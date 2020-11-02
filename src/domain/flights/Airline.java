@@ -1,5 +1,11 @@
 package domain.flights;
 
+/**
+ * enumeration of airlines with their codes as specified in the project specification 
+ * @author johannablumenthal
+ *
+ */
+
 public enum Airline {
 	ALASKA_AIRLINES("AS"),
 	ALOHA_AIR("AQ"),
@@ -26,6 +32,10 @@ public enum Airline {
 
     }
 	
+	/**
+	 * method to get the codes based on airline 
+	 * @return the two letter code
+	 */
 	public String getAirlineCode() {
 		return airlineCode;
 	}

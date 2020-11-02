@@ -1,5 +1,12 @@
 package domain.flights;
 
+/**
+ * enumeration of airport codes...data taken from airportcodes.org with some changes to remove duplications and clean up data
+ * @author johannablumenthal
+ * @version 0.1
+ *
+ */
+
 public enum Airport {
 	ABERDEEN_SD("ABR"),
 	ABILENE_TX("ABI"),
@@ -729,6 +736,10 @@ public enum Airport {
 		this.airportCode = airportCode;
 
     }
+	/**
+	 * returns the airporCode based on the city
+	 * @return
+	 */
 	
 	public String getAirportCode() {
 		return airportCode;

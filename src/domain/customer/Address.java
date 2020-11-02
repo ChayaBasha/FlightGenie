@@ -1,11 +1,32 @@
 package domain.customer;
 
+/**
+ * Class used to store addresses for users and for billing
+ * 
+ * @author johannablumenthal
+ * @version 0.1
+ */
 public class Address {
+	/**
+	 * Holds the street address including the number and street and type of street
+	 * ex 1234 Bux way ex 34B 8th Ave. ex 375 Iris Ave Suite 2
+	 */
 
+	private String street;
 	private String city;
 	private String state;
 	private String country;
 	private String zipCode;
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		if (street != null) {
+			this.street = street;
+		}
+	}
 
 	public String getCity() {
 		return city;
@@ -47,8 +68,9 @@ public class Address {
 		}
 	}
 
-	public Address(String city, String state, String country, String zipCode) {
-		assert (city != null && state != null && country != null && zipCode != null);
+	public Address(String street, String city, String state, String country, String zipCode) {
+		assert (street != null && city != null && state != null && country != null && zipCode != null);
+		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.country = country;

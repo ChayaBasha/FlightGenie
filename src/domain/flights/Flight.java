@@ -1,20 +1,57 @@
 package domain.flights;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+
+/**
+ * this class will create flight instances for each new flight that the user can
+ * search for
+ * 
+ * @author johannablumenthal
+ * @version 0.1
+ *
+ */
 
 public class Flight {
-
+	/**
+	 * Holds the airline from the enumerated list of airlines/codes for the flight
+	 */
 	private Airline airline;
+
+	/**
+	 * holds the three digit flight number
+	 */
 	private short flightNumber;
+
+	/**
+	 * Holds the airport from the enumerated list and ariport/codes for departure
+	 */
 	private Airport departureCity;
-	private Date departureTime;
+	/**
+	 * Holds the year/month/day/time of departure
+	 */
+	private LocalDateTime departureTime;
+	/**
+	 * Holds the airport from the enumerated list and ariport/codes for arrival
+	 */
 	private Airport arrivalCity;
-	private Date arrivalTime;
-	private float businessPrice;
-	private float economyPrice;
-	private List<Seat> seats = new ArrayList<Seat>();
+	/**
+	 * Holds the year/month/day/time of departure
+	 */
+	private LocalDateTime arrivalTime;
+	/**
+	 * Holds the price per ticket for business class
+	 */
+	private double businessPrice;
+	/**
+	 * Holds the price per ticker for economy class
+	 */
+	private double economyPrice;
+	/**
+	 * Holds the seats for each flight to track bookings...right now all flights
+	 * have same model for seats, but this could be changed in the future
+	 */
+	private ArrayList<Seat> seats = new ArrayList<Seat>();
 
 	public Airline getAirline() {
 		return airline;
@@ -46,77 +83,81 @@ public class Flight {
 		}
 	}
 
-	public Date getDepartureTime() {
+	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(LocalDateTime departureTime) {
 		if (departureTime != null) {
 			this.departureTime = departureTime;
 		}
 	}
 
-	public Airport getArrivalCiry() {
+	public Airport getArrivalCity() {
 		return arrivalCity;
 	}
 
-	public void setArrivalCiry(Airport arrivalCity) {
+	public void setArrivalCity(Airport arrivalCity) {
 		if (arrivalCity != null) {
 			this.arrivalCity = arrivalCity;
 		}
 	}
 
-	public Date getArrivalTime() {
+	public LocalDateTime getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Date arrivalTime) {
+	public void setArrivalTime(LocalDateTime arrivalTime) {
 		if (arrivalTime != null) {
 			this.arrivalTime = arrivalTime;
 		}
 	}
 
-	public float getBusinessPrice() {
+	public double getBusinessPrice() {
 		return businessPrice;
 	}
 
-	public void setBusinessPrice(float businessPrice) {
+	public void setBusinessPrice(double businessPrice) {
 		if (businessPrice != 0) {
 			this.businessPrice = businessPrice;
 		}
 	}
 
-	public float getEconomyPrice() {
+	public double getEconomyPrice() {
 		return economyPrice;
 	}
 
-	public void setEconomyPrice(float economyPrice) {
+	public void setEconomyPrice(double economyPrice) {
 		if (economyPrice != 0) {
 			this.economyPrice = economyPrice;
 		}
 	}
 
-	public List<Seat> getSeats() {
+	public ArrayList<Seat> getSeats() {
 		return seats;
 	}
 
-	public void setSeats(List<Seat> seats) {
+	public void setSeats(ArrayList<Seat> seats) {
 
 		this.seats = seats;
 	}
 
-	public Flight(Airline airline, short flightNumber, Airport departureCity, Date departureTime, Airport arrivalCity,
-			Date arrivalTime, float businessPrice, float economyPrice) {
+	public Flight(Airline airline, short flightNumber, Airport departureCity, LocalDateTime departureTime,
+			Airport arrivalCity, LocalDateTime arrivalTime, double businessPice, double economyPrice) {
 		assert (airline != null && flightNumber != 0 && departureCity != null && departureTime != null
-				&& arrivalCity != null && arrivalTime != null && businessPrice != 0 && economyPrice != 0);
+				&& arrivalCity != null && arrivalTime != null && businessPice != 0 && economyPrice != 0);
 		this.airline = airline;
 		this.flightNumber = flightNumber;
 		this.departureCity = departureCity;
 		this.departureTime = departureTime;
 		this.arrivalCity = arrivalCity;
 		this.arrivalTime = arrivalTime;
-		this.businessPrice = businessPrice;
+		this.businessPrice = businessPice;
 		this.economyPrice = economyPrice;
+		/**
+		 * The cunstructor is set to initiate the seats with the 10 Business class and
+		 * 30 Economy class seats specified in the project specification
+		 */
 		this.seats.add(new Seat("1A", SeatType.BUSINESS, false));
 		this.seats.add(new Seat("1B", SeatType.BUSINESS, false));
 		this.seats.add(new Seat("1C", SeatType.BUSINESS, false));
@@ -158,5 +199,40 @@ public class Flight {
 		this.seats.add(new Seat("8E", SeatType.ECONOMY, false));
 		this.seats.add(new Seat("8F", SeatType.ECONOMY, false));
 
+	}
+
+	/**
+	 * compares two flights based upon the fields we consider to be a different
+	 * flight. For example, many routes run multiple times per day. The same route,
+	 * same airline would distinguish the flights by the times.
+	 * 
+	 * @param flight to compare with the newly created flight
+	 * @return whether the same flight on the important parameters
+	 */
+
+	public boolean equals(Flight flight) {
+		if (flight.getAirline() == this.getAirline() && flight.getFlightNumber() == this.getFlightNumber()
+				&& flight.getDepartureCity() == this.getDepartureCity()
+				&& flight.getDepartureTime().isEqual(this.getDepartureTime())
+				&& flight.getArrivalCity() == this.getArrivalCity()
+				&& flight.getArrivalTime().isEqual(this.getArrivalTime())) {
+			return true;
+		} else
+			return false;
+	};
+
+	/**
+	 * checks whether there are any seats available on a particular flight. This
+	 * could be extended to show how many seats, etc.
+	 * 
+	 * @return whether seats are available
+	 */
+	public boolean availability() {
+		for (int i = 0; i < this.seats.size(); i++) {
+			if (this.seats.get(i).isBooked() == false) {
+				return true;
+			}
+		}
+		return false;
 	}
 };

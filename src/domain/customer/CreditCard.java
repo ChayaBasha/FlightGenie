@@ -1,12 +1,39 @@
 package domain.customer;
 
-public class CreditCard {
+/**
+ * class used to hold the creditCard information for a customer
+ * 
+ * @author johannablumenthal
+ *
+ */
 
+public class CreditCard {
+	/**
+	 * Holds the name on the credit/debit card, which could be different from the
+	 * customer
+	 */
 	private String nameOnCard;
+
+	/**
+	 * Hold the enumerated creditCard types
+	 */
 	private CardType cardType;
-	private long cardNumber;
+	/**
+	 * Holds the 16 digit credit card number as a string
+	 */
+	private String cardNumber;
+	/**
+	 * Holds the mm/yy expiration date
+	 */
 	private String expiration;
+	/**
+	 * Holds the CSC, CVV2, CVC2
+	 */
 	private String securityCode;
+	/**
+	 * Holds the billing address associated with the card, which could be different
+	 * than the customer's address
+	 */
 	private Address billingAddress;
 
 	public String getNameOnCard() {
@@ -29,12 +56,12 @@ public class CreditCard {
 		}
 	}
 
-	public long getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(long cardNumber) {
-		if (cardNumber != 0L) {
+	public void setCardNumber(String cardNumber) {
+		if (cardNumber != null) {
 			this.cardNumber = cardNumber;
 		}
 	}
@@ -69,9 +96,10 @@ public class CreditCard {
 		}
 	}
 
-	public CreditCard(String nameOnCard, CardType cardType, long cardNumber, String expiration, String securityCode,
+	public CreditCard(String nameOnCard, CardType cardType, String cardNumber, String expiration, String securityCode,
 			Address billingAddress) {
-		assert(nameOnCard != null && cardType != null && cardNumber != 0L && expiration != null && securityCode != null && billingAddress != null);
+		assert (nameOnCard != null && cardType != null && cardNumber != null && expiration != null
+				&& securityCode != null && billingAddress != null);
 		this.nameOnCard = nameOnCard;
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
@@ -79,7 +107,5 @@ public class CreditCard {
 		this.securityCode = securityCode;
 		this.billingAddress = billingAddress;
 	}
-	
-	
 
 }

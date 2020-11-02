@@ -1,17 +1,38 @@
 package domain.customer.itinerary;
 
 import domain.flights.Flight;
+
 import domain.flights.Seat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * class that holds the particular flights that a customer has booked for
+ * passengers
+ * 
+ * @author johannablumenthal
+ *
+ */
 public class Itinerary {
 
 	private String itineraryId;
+	/**
+	 * Holds the customer ID who made the itinerary
+	 */
 	private String owner;
+	/**
+	 * Holds passenger name, which could be different than the customer
+	 */
 	private String passengerName;
 	private List<Flight> flights;
+	/**
+	 * Holds the specific seat on the plane that was reserved
+	 */
 	private Seat seat;
+	/**
+	 * Holds an enumeration of whether reserved, booked or canceled as specified in
+	 * the project
+	 */
 	private BookingStatus bookingStatus;
 	private Date bookingDate = new Date();
 
@@ -78,8 +99,7 @@ public class Itinerary {
 		}
 	}
 
-	public Itinerary(String owner, String passengerName, List<Flight> flights, Seat seat,
-			BookingStatus bookingStatus) {
+	public Itinerary(String owner, String passengerName, List<Flight> flights, Seat seat, BookingStatus bookingStatus) {
 		assert (owner != null && passengerName != null && flights != null && seat != null && bookingStatus != null);
 //		this.itineraryId = itineraryId;
 		this.owner = owner;
