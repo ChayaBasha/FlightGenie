@@ -68,25 +68,10 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_CxQywBbvEeumKbVlEEIXIQ" type="_4dCu8BSTEeumKbVlEEIXIQ" association="_CxPkoBbvEeumKbVlEEIXIQ"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_3VyqYBexEeumKbVlEEIXIQ" name="Domain">
-    <packagedElement xmi:type="uml:Class" xmi:id="_HzEAABewEeumKbVlEEIXIQ" name="User">
-      <generalization xmi:type="uml:Generalization" xmi:id="_ecf34BipEeumKbVlEEIXIQ" general="_5gbA0BevEeumKbVlEEIXIQ"/>
-      <generalization xmi:type="uml:Generalization" xmi:id="_lN1o0BipEeumKbVlEEIXIQ" general="_Ml2ZkBewEeumKbVlEEIXIQ"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_Y-qpABezEeumKbVlEEIXIQ" name="userName" visibility="private">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_b1P0kBezEeumKbVlEEIXIQ" name="password" visibility="private">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZTE6IBewEeumKbVlEEIXIQ" name="Itinerary ">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_f1UF0Be1EeumKbVlEEIXIQ" name="flights" type="_E7Z2YBewEeumKbVlEEIXIQ"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_j_EJcBe1EeumKbVlEEIXIQ" name="status"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_E7Z2YBewEeumKbVlEEIXIQ" name="Flight">
       <generalization xmi:type="uml:Generalization" xmi:id="_V-tWwBiqEeumKbVlEEIXIQ" general="_qIbwABioEeumKbVlEEIXIQ"/>
       <generalization xmi:type="uml:Generalization" xmi:id="_Xk4qYBiqEeumKbVlEEIXIQ" general="_6vfo4BioEeumKbVlEEIXIQ"/>
       <generalization xmi:type="uml:Generalization" xmi:id="_anW84BiqEeumKbVlEEIXIQ" general="_qFFsgBe1EeumKbVlEEIXIQ"/>
-      <generalization xmi:type="uml:Generalization" xmi:id="_ctzE8BiqEeumKbVlEEIXIQ" general="_ZTE6IBewEeumKbVlEEIXIQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_q1rt4BezEeumKbVlEEIXIQ" name="airline" type="_6vfo4BioEeumKbVlEEIXIQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_tDxWEBezEeumKbVlEEIXIQ" name="flightNumber">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
@@ -106,7 +91,7 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_5gbA0BevEeumKbVlEEIXIQ" name="Customer">
       <generalization xmi:type="uml:Generalization" xmi:id="_6EfHkBipEeumKbVlEEIXIQ" general="_XjyxABe0EeumKbVlEEIXIQ"/>
       <generalization xmi:type="uml:Generalization" xmi:id="_AyXU0BiqEeumKbVlEEIXIQ" general="_cKku4Be0EeumKbVlEEIXIQ"/>
-      <generalization xmi:type="uml:Generalization" xmi:id="_eqwg4BiqEeumKbVlEEIXIQ" general="_ZTE6IBewEeumKbVlEEIXIQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_n05EIB8LEeumKbVlEEIXIQ" general="_DpLf4B8LEeumKbVlEEIXIQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_tzrlgBeyEeumKbVlEEIXIQ" name="name" visibility="private">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
@@ -120,16 +105,20 @@
       <generalization xmi:type="uml:Generalization" xmi:id="_TkA18BiqEeumKbVlEEIXIQ" general="_E7Z2YBewEeumKbVlEEIXIQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_XjyxABe0EeumKbVlEEIXIQ" name="Address">
-      <generalization xmi:type="uml:Generalization" xmi:id="_Mrxy0BiqEeumKbVlEEIXIQ" general="_NDFxgBioEeumKbVlEEIXIQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_iGZ0IBe0EeumKbVlEEIXIQ" name="street">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_jw5nEBe0EeumKbVlEEIXIQ" name="city">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_sQPK4Be0EeumKbVlEEIXIQ" name="state" type="_NDFxgBioEeumKbVlEEIXIQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sQPK4Be0EeumKbVlEEIXIQ" name="state">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_unxqABe0EeumKbVlEEIXIQ" name="zipCode">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5huPEB8HEeumKbVlEEIXIQ" name="country">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_cKku4Be0EeumKbVlEEIXIQ" name="CreditCard">
@@ -138,19 +127,27 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_09BU0Be0EeumKbVlEEIXIQ" name="nameOnCard">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_6xE-IBe0EeumKbVlEEIXIQ" name="number">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_6xE-IBe0EeumKbVlEEIXIQ" name="cardNumber">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_BF5yMBe1EeumKbVlEEIXIQ" name="expiration">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_Dc-XQBe1EeumKbVlEEIXIQ" name="securityCode">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_usQrEBipEeumKbVlEEIXIQ" name="billingAdress" type="_XjyxABe0EeumKbVlEEIXIQ"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_qFFsgBe1EeumKbVlEEIXIQ" name="Seats"/>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_NDFxgBioEeumKbVlEEIXIQ" name="States"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qFFsgBe1EeumKbVlEEIXIQ" name="Seat">
+      <generalization xmi:type="uml:Generalization" xmi:id="_lIWa0B8KEeumKbVlEEIXIQ" general="_Byv_MB8KEeumKbVlEEIXIQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2UMRMB8JEeumKbVlEEIXIQ" name="seatNumber">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2153IB8JEeumKbVlEEIXIQ" name="seatType"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_3pDLUB8JEeumKbVlEEIXIQ" name="booked">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_bHaA0BioEeumKbVlEEIXIQ" name="CardTypes">
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_A7AI4BipEeumKbVlEEIXIQ" name="VISA"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_CWX6sBipEeumKbVlEEIXIQ" name="MASTERCARD"/>
@@ -158,9 +155,39 @@
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_H2ZNsBipEeumKbVlEEIXIQ" name="DISCOVER"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_qIbwABioEeumKbVlEEIXIQ" name="AirportCodes"/>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_6vfo4BioEeumKbVlEEIXIQ" name="Airlines">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_TsCHMBojEeumKbVlEEIXIQ" name="AQ"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_PhTzMBojEeumKbVlEEIXIQ" name="AS"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_6vfo4BioEeumKbVlEEIXIQ" name="Airlines"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_IPOI0B8JEeumKbVlEEIXIQ" name="BookingStatus">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_aHa5cB8JEeumKbVlEEIXIQ" name="RESERVED"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_ehiUUB8JEeumKbVlEEIXIQ" name="BOOKED"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_f6UFIB8JEeumKbVlEEIXIQ" name="CANCEL"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_Byv_MB8KEeumKbVlEEIXIQ" name="seatType">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_EL8rMB8KEeumKbVlEEIXIQ" name="BUSINESS"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_H7bNoB8KEeumKbVlEEIXIQ" name="ECONOMY"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_AAs9UB8LEeumKbVlEEIXIQ" name="User">
+      <generalization xmi:type="uml:Generalization" xmi:id="_qD4EMB8LEeumKbVlEEIXIQ" general="_5gbA0BevEeumKbVlEEIXIQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_r2RO4B8LEeumKbVlEEIXIQ" general="_Ml2ZkBewEeumKbVlEEIXIQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Fkn44B8LEeumKbVlEEIXIQ" name="userId">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_F_3qcB8LEeumKbVlEEIXIQ" name="userName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Gjf78B8LEeumKbVlEEIXIQ" name="password">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DpLf4B8LEeumKbVlEEIXIQ" name="Class13">
+      <generalization xmi:type="uml:Generalization" xmi:id="_ufxAsB8LEeumKbVlEEIXIQ" general="_IPOI0B8JEeumKbVlEEIXIQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_PQs8oB8LEeumKbVlEEIXIQ" name="itineraryId">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_XJT3oB8LEeumKbVlEEIXIQ" name="owner">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_XibiQB8LEeumKbVlEEIXIQ" name="bookingStatus" type="_IPOI0B8JEeumKbVlEEIXIQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_X4c1kB8LEeumKbVlEEIXIQ" name="seat" type="_qFFsgBe1EeumKbVlEEIXIQ"/>
     </packagedElement>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_dkfaEBeyEeumKbVlEEIXIQ">
