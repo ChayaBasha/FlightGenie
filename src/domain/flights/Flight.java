@@ -155,7 +155,7 @@ public class Flight {
 		this.businessPrice = businessPice;
 		this.economyPrice = economyPrice;
 		/**
-		 * The cunstructor is set to initiate the seats with the 10 Business class and
+		 * The constructor is set to initiate the seats with the 10 Business class and
 		 * 30 Economy class seats specified in the project specification
 		 */
 		this.seats.add(new Seat("1A", SeatType.BUSINESS, false));

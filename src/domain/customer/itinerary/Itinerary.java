@@ -4,7 +4,7 @@ import domain.flights.Flight;
 
 import domain.flights.Seat;
 import java.util.Date;
-import java.util.List;
+
 
 /**
  * class that holds the particular flights that a customer has booked for
@@ -24,7 +24,7 @@ public class Itinerary {
 	 * Holds passenger name, which could be different than the customer
 	 */
 	private String passengerName;
-	private List<Flight> flights;
+	private Flight flight;
 	/**
 	 * Holds the specific seat on the plane that was reserved
 	 */
@@ -60,12 +60,12 @@ public class Itinerary {
 		}
 	}
 
-	public List<Flight> getFlights() {
-		return flights;
+	public Flight getFlight() {
+		return flight;
 	}
 
-	public void setFlights(List<Flight> flights) {
-		this.flights = flights;
+	public void setFlight(Flight flight) {
+		this.flight = flight;
 	}
 
 	public Seat getSeat() {
@@ -99,14 +99,14 @@ public class Itinerary {
 		}
 	}
 
-	public Itinerary(String owner, String passengerName, List<Flight> flights, Seat seat, BookingStatus bookingStatus) {
-		assert (owner != null && passengerName != null && flights != null && seat != null && bookingStatus != null);
-//		this.itineraryId = itineraryId;
+	public Itinerary(String itineraryId, String owner, String passengerName, Flight flight, Seat seat, BookingStatus bookingStatus) {
+		assert (itineraryId != null && owner != null && passengerName != null && flight != null && seat != null && bookingStatus != null);
+		this.itineraryId = itineraryId;
 		this.owner = owner;
 		this.passengerName = passengerName;
-		this.flights = flights;
+		this.flight = flight;
 		this.seat = seat;
 		this.bookingStatus = bookingStatus;
 	}
-
 }
+

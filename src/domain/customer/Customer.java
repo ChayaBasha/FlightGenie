@@ -71,11 +71,13 @@ public class Customer extends User {
 	public Customer(String userName, String password, String name, Address address, String email,
 			CreditCard creditCard) {
 		super(userName, password);
-		assert (name != null && address != null && email != null && creditCard != null);
+		assert (name != null && address != null && creditCard != null);
 		this.name = name;
 		this.address = address;
 		this.email = email;
 		this.creditCard = creditCard;
 
 	}
+	
 }
+
