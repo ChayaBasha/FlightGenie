@@ -1,11 +1,10 @@
 package domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 public class UserTest {
 	
@@ -15,7 +14,7 @@ public class UserTest {
 
 	ArrayList<User> users = new ArrayList<User>();
 
-	void createUsers() {
+	public void createUsers() {
 		users.add(new User("FrogBomb", "ribb3t!"));
 		users.add(new User("Penny", "w00f!"));
 		users.add(new User("JMonkey", "ooh@hh"));
@@ -29,26 +28,22 @@ public class UserTest {
 		User[] userArr = new User[this.users.size()];
 		users.toArray(userArr);
 
-		assertFalse(proposedUser.isUniqueUser(userArr), "Already existing user not found!");
-		assertTrue(proposedUser2.isUniqueUser(userArr), "Already an exisitng user");
+		assertFalse("Already existing user not found!", proposedUser.isUniqueUser(userArr));
+		assertTrue("Already an exisitng user", proposedUser2.isUniqueUser(userArr));
 
 	}
-	@Test
+	@Test(expected = AssertionError.class)
 	public void testEmpties() {
 		
-		assertThrows(AssertionError.class, new Executable() {
-			
-			public void execute() throws Throwable {
-				@SuppressWarnings("unused")
-				User proposedUser3 = new User("", "password");
-			}
-		});
+		@SuppressWarnings("unused")
+		User proposedUser3 = new User("", "password");
+
 		
 	}
 	@Test
 	public void testEquals() {
-		assertFalse(proposedUser.equals(proposedUser2), "not authorized");
-		assertTrue(proposedUser.equals(returningUser), "authorized");
+		assertFalse( "not authorized", proposedUser.equals(proposedUser2));
+		assertTrue("authorized", proposedUser.equals(returningUser) );
 	}
 
 }

@@ -1,18 +1,18 @@
 package service.implementationTests;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import domain.flights.Airport;
-import domain.flights.Flight;
 import junit.framework.TestCase;
+import service.FlightSvcImpl;
 import service.IFlightSvc;
 import service.ServiceFactory;
 
-class FlightSvcImplTest extends TestCase{
+public class FlightSvcImplTest extends TestCase{
 	
 	private ServiceFactory serviceFactory;
 	private Airport departureCity;
@@ -20,9 +20,10 @@ class FlightSvcImplTest extends TestCase{
 	private LocalDateTime startDepartureTimeRange;
 	private LocalDateTime endDepartureTimeRange;
 	
-	
-	protected void SetUp() throws Exception{
+	@Override 
+	protected void setUp() throws Exception {
 		super.setUp();
+		System.out.println("hi");
 		
 		serviceFactory = new ServiceFactory();
 		departureCity = Airport.DENVER_CO;
@@ -35,11 +36,28 @@ class FlightSvcImplTest extends TestCase{
 	}
 
 	@Test
-	void testGetFlightsByRoute() {
+	public void testGetFlightsByRoute() {
+		
+
+		System.out.println("there");
+		IFlightSvc flightService = serviceFactory.getFlghtService();
+		assertTrue(flightService.getFlightsByRoute(departureCity, arrivalCity)!= null);
+		System.out.println("testGetFlightsByRoute PASSED");
+		
+		FlightSvcImpl flightSvcImpl = (FlightSvcImpl) serviceFactory.getFlghtService();
+		assertTrue(flightSvcImpl.getFlightsByRoute(departureCity, arrivalCity)!=null);
+		
+	}
+	
+	@Test
+	public void testGetFlightsByTimeFrame() {
 		
 		IFlightSvc flightService = serviceFactory.getFlghtService();
-		assert(flightService.getFlightsByRoute(departureCity, arrivalCity)== "");
+		assertTrue(flightService.getFlightByTimeFrame(startDepartureTimeRange, endDepartureTimeRange)!=null);
+		System.out.println("testGetFlightsByTimeFrame PASSED");
 		
+		FlightSvcImpl flightSvcImpl = (FlightSvcImpl) serviceFactory.getFlghtService();
+		assertTrue(flightSvcImpl.getFlightsByRoute(departureCity, arrivalCity) != null);
 		
 	}
 

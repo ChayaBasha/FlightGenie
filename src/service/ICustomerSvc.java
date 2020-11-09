@@ -17,7 +17,7 @@ public interface ICustomerSvc {
 	
 	public void createCustomer(Customer customer);
 	public Customer getCustomerByUserName(String userName);
-	public void upateCustomer(Customer customer);
+	public void updateCustomer(Customer customer);
 	public void deleteCustomer(String userName);
 	
 

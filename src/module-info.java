@@ -1,7 +1,7 @@
 module flightReservationSystem {
-	requires org.junit.jupiter.api;
-	requires org.junit.platform.runner;
+
+	exports service.implementationTests;
+	exports service.FactoryTest;
 	requires junit;
-	requires org.junit.platform.suite.api;
 	
 }

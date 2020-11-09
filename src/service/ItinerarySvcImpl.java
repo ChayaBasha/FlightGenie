@@ -1,9 +1,14 @@
 package service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-
+import domain.customer.itinerary.BookingStatus;
 import domain.customer.itinerary.Itinerary;
+import domain.flights.Airline;
+import domain.flights.Airport;
+import domain.flights.Flight;
 /**
  * Implements the Itinerary Services 
  * 
@@ -28,16 +33,19 @@ public class ItinerarySvcImpl implements IItinerarySvc{
 	 */
 	public List<Itinerary> getItineraryByCustomer(String userName) {
 		System.out.println("Get Itinerary for Customer Method in Itinerary Service implementation was called");
-		return null;
+		return new ArrayList<Itinerary>();
 	}
 
 	@Override
 	/**
-	 * gets a particular itinerary
+	 * gets a particular itinerary by ID...since behavior not implemented with data, I am using the concrete data for testing...will serve up data later
 	 */
 	public Itinerary getItineraryById(String itineraryId) {
+		
+		Flight flight1 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO, LocalDateTime.parse("2019-06-23T12:30:00"), Airport.BOSTON_MA, LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
+		
 		System.out.println("Get Itinerary By Id Method in Itinerary Service implementation was called");
-		return null;
+		return new Itinerary("123456AFD", "FrogBomb", "Penny Blumenthal", flight1, "1C", BookingStatus.RESERVED);
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package domain.customer.itinerary;
 
 import domain.flights.Flight;
 
-import domain.flights.Seat;
 import java.util.Date;
 
 
@@ -28,7 +27,7 @@ public class Itinerary {
 	/**
 	 * Holds the specific seat on the plane that was reserved
 	 */
-	private Seat seat;
+	private String seatNumber;
 	/**
 	 * Holds an enumeration of whether reserved, booked or canceled as specified in
 	 * the project
@@ -68,12 +67,12 @@ public class Itinerary {
 		this.flight = flight;
 	}
 
-	public Seat getSeat() {
-		return seat;
+	public String getSeatNumber() {
+		return seatNumber;
 	}
 
-	public void setSeat(Seat seat) {
-		this.seat = seat;
+	public void setSeat(String seatNumber) {
+		this.seatNumber = seatNumber;
 	}
 
 	public BookingStatus getBookingStatus() {
@@ -99,14 +98,29 @@ public class Itinerary {
 		}
 	}
 
-	public Itinerary(String itineraryId, String owner, String passengerName, Flight flight, Seat seat, BookingStatus bookingStatus) {
-		assert (itineraryId != null && owner != null && passengerName != null && flight != null && seat != null && bookingStatus != null);
+	public Itinerary(String itineraryId, String owner, String passengerName, Flight flight, String seatNumber, BookingStatus bookingStatus) {
+		assert (itineraryId != null && owner != null && passengerName != null && flight != null && seatNumber != null && bookingStatus != null);
 		this.itineraryId = itineraryId;
 		this.owner = owner;
 		this.passengerName = passengerName;
 		this.flight = flight;
-		this.seat = seat;
+		this.seatNumber = seatNumber;
 		this.bookingStatus = bookingStatus;
+	}
+
+	/**
+	 * This method tests whether there the same passenger has been booked more than once on the same exact flight; the system should prevent this as one person cannot be in more than one seat at a time
+	 * @param itinerary
+	 * @return
+	 */
+	
+	public boolean equals(Itinerary itinerary) {
+		if(itinerary.getPassengerName() == this.getPassengerName() 
+				&& itinerary.getFlight() == this.getFlight()) {
+			return true;
+		} else
+			return false;
+			
 	}
 }
 

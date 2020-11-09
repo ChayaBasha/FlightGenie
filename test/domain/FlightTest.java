@@ -1,11 +1,11 @@
 package domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
 
 import domain.flights.Airline;
 import domain.flights.Airport;
@@ -13,7 +13,7 @@ import domain.flights.Flight;
 import domain.flights.Seat;
 import domain.flights.SeatType;
 
-class FlightTest {
+public class FlightTest {
 	
 	Flight flight1 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO, LocalDateTime.parse("2019-06-23T12:30:00"), Airport.BOSTON_MA, LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
 	Flight flight2 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO, LocalDateTime.parse("2019-06-23T12:30:00"), Airport.BOSTON_MA, LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
@@ -21,7 +21,7 @@ class FlightTest {
 
 
 	@Test
-	void testSameFlight() {
+	public void testSameFlight() {
 		
 	    assertFalse(flight1.equals(flight3));
 	    assertTrue(flight1.equals(flight2));
@@ -29,7 +29,7 @@ class FlightTest {
 	}
 	
 	@Test
-	void testFlightAvailability() {
+	public void testFlightAvailability() {
 				
 		ArrayList<Seat> seats2 = new ArrayList<Seat> (); 
 		seats2.add(new Seat("1A", SeatType.BUSINESS, true));
@@ -80,7 +80,7 @@ class FlightTest {
 	}
 	
 	@Test
-	void testGetAirlineCode() {
+	public void testGetAirlineCode() {
 		
 		assertFalse(flight1.getAirline().getAirlineCode() == "FL");
 		assertTrue(flight1.getAirline().getAirlineCode() == "CO");
@@ -88,7 +88,7 @@ class FlightTest {
 	}
 	
 	@Test
-	void testAirportCode() {
+	public void testAirportCode() {
 		assertFalse(flight1.getArrivalCity().getAirportCode() == "BMS");
 		assertTrue(flight1.getArrivalCity().getAirportCode() == "BOS");
 	}

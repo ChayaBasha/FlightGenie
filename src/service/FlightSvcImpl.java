@@ -1,8 +1,7 @@
 package service;
 
 import java.time.LocalDateTime;
-
-
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.flights.Airport;
@@ -15,6 +14,7 @@ import domain.flights.Flight;
  */
 
 public class FlightSvcImpl implements IFlightSvc {
+	
 
 	@Override
 	/**
@@ -24,7 +24,7 @@ public class FlightSvcImpl implements IFlightSvc {
 		
 		System.out.println("get FLight by Route Method for Flight Service Implementation was called");
 		
-		return null;
+		return new ArrayList<Flight>();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class FlightSvcImpl implements IFlightSvc {
 
 		System.out.println("get FLight by Time Frame for Flight Service Implementation was called");
 		
-		return null;
+		return new ArrayList<Flight>();
 	}
 
 	

@@ -16,7 +16,7 @@ public class UserSvcImpl implements IUserSvc{
 	 */
 	public boolean checkUserNameAvailable(String userName) {
 		System.out.println("Check UserName Availability Method was called");
-		return false;
+		return true;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class UserSvcImpl implements IUserSvc{
 	 */
 	public boolean autehnticateUser(User user) {
 		System.out.println("Authenticate Method was called");
-		return false;
+		return true;
 	}
 
 }

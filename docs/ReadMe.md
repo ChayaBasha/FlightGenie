@@ -10,6 +10,9 @@ The FLight Reservation System is an application that allows customers to book ai
 # Changes in Week3 
 1. Added an equals method to the User class
 2. Added a test for the new method
+3. Added an equals method to the Itinerary Class
+4. Tested the new added equals method
+5. I also changed the seat in the itinerary to just be the seatNumber
 
 
 # Week 3 Assignment
@@ -28,13 +31,18 @@ The FLight Reservation System is an application that allows customers to book ai
     -Creates New UserSvcImpl, new CustoerSvcImpl, new FlightSvcImpl, new ItinerarySvcImpl
     
 4. Create a JUnit test suite that should test:
-Factory to get service  -instanitated in the setup method
-Test method sfor each service  
+Factory to get service  -instantiated in the setup method
+    - ServiceFactoryTest in test.service
+Test methods for each service  
+    -CustomerSvcImpTest
+    - FlightSvcImplTest
+    - UserSvcImplTest
+    - ItineraryScvImplTest
+5. Create Test Suite
+    -I couldn't get this working in Junit 5 so I reverted back to Junit 4 and changed all of my tests...even then I was having an error that eventually was resolved by exporting the test packages into the module-info.java file
 
 # TODO
 1. I'd like to have the system generate the Ids (I have used the database to do this in the past)
-2. May need to change some things about the itineraries to make it possible to have more than one passenger (need to think what makes more sense)
-3. I need to fix the test for User...maybe start over. 
-4. I need to think about whether I need the isUnique on the user class
+2. I need to think about whether I need the isUnique on the user class
 
 
