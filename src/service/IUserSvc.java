@@ -1,6 +1,7 @@
 package service;
 
 import domain.User;
+import service.exception.UserException;
 /**
  * interface for the user services 
  * @author johannablumenthal
@@ -17,7 +18,7 @@ public interface IUserSvc extends IService {
 	 * @return
 	 */
 	
-	public boolean checkUserNameAvailable(String userName);
-	public boolean autehnticateUser(User user);
+	public boolean checkUserNameAvailable(String userName) throws UserException;
+	public boolean authenticateUser(User user) throws UserException;
 
 }

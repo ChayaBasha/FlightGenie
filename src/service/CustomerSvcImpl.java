@@ -19,10 +19,14 @@ import service.exception.CustomerConstructorException;
 import service.exception.CustomerException;
 
 public class CustomerSvcImpl implements ICustomerSvc {
+	
+	/**
+	 * in order to create a directory for all of the customers
+	 */
+	private File customerFolder = new File("customers");
 
 	/**
-	 * Below are the beginnings of the CRUD functions for the Customers. Right now
-	 * it doesn't do anything.
+	 * CRUD Functions for Customers. This reads and writes to the file system with each customer creating its own file in th ecustomers folder
 	 */
 
 	@Override
@@ -30,8 +34,9 @@ public class CustomerSvcImpl implements ICustomerSvc {
 
 		if (customer != null) {
 			try {
+				customerFolder.mkdirs();
 				ObjectOutputStream output = new ObjectOutputStream(
-						new FileOutputStream(customer.getUserName() + ".customer.out"));
+						new FileOutputStream(customerFolder.toPath().resolve((customer.getUserName() +".customer.out")).toFile()));
 
 				output.writeObject(customer);
 				output.flush();
@@ -45,15 +50,14 @@ public class CustomerSvcImpl implements ICustomerSvc {
 	}
 
 	/**
-	 * Because I am checking that my fields are not null in the constructor, I
-	 * cannot return a new Customer without giving it data; when we built ou the
-	 * data source it will come from the data source.
+	 * The function will now check the existing UserNames to find the customer
 	 */
 	@Override
 	public Customer getCustomerByUserName(String userName) throws CustomerException {
 		if (userName != null) {
 			try {
-				ObjectInputStream input = new ObjectInputStream(new FileInputStream(userName + ".customer.out"));
+				ObjectInputStream input = new ObjectInputStream(new FileInputStream(
+						customerFolder.toPath().resolve(userName + ".customer.out").toFile()));
 				Object fileObject = input.readObject();
 				input.close();
 				if (fileObject instanceof Customer) {
@@ -62,7 +66,7 @@ public class CustomerSvcImpl implements ICustomerSvc {
 					throw new CustomerConstructorException(userName + " not associated with a  Customer");
 
 			} catch (FileNotFoundException e) {
-				throw new CustomerException("could not find Customer" + userName);
+				throw new CustomerException("could not find Customer " + userName);
 			} catch (IOException e) {
 				throw new CustomerException("There was an I/O problem");
 			} catch (ClassNotFoundException e) {
@@ -90,10 +94,10 @@ public class CustomerSvcImpl implements ICustomerSvc {
 	public void deleteCustomer(String userName) throws CustomerException {
 		if(userName != null) {
 			
-				File existingUser = new File(userName + ".customer.out");
+				File existingUser = customerFolder.toPath().resolve(userName + ".customer.out").toFile();
 				if(existingUser.exists()) {
 					existingUser.delete();
-				} else throw new CustomerException ("could not deleted " + userName);
+				} else throw new CustomerException ("could not delete " + userName);
 			
 		} else 
 			throw new CustomerException (" null input");

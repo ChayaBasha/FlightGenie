@@ -14,73 +14,142 @@ import junit.framework.TestCase;
 import service.CustomerSvcImpl;
 import service.ICustomerSvc;
 import service.ServiceFactory;
+import service.exception.CustomerException;
+import service.exception.ServiceLoadException;
 
 public class CustomerSvcImplTest extends TestCase {
 
 	private ServiceFactory serviceFactory;
 	private Customer customer1;
-	
+
 	@Before
 	protected void setUp() throws Exception {
-		
-		serviceFactory = new ServiceFactory();
-		Address  customer1Address = new Address(" 1234 Privet Dr.", "Longmont", "CO", "United States", "80503");
-		CreditCard customer1CreditCard = new CreditCard("Johanna Blumenthal", CardType.VISA, "5555 5555 5555 5555", "02/22", "453", customer1Address);
-		customer1 = new Customer("Penny", "W00f!", "Penny Blumenthal", customer1Address,"penny@gmail.com", customer1CreditCard );
-		
+
+		serviceFactory = ServiceFactory.getInstance();
+		Address customer1Address = new Address(" 1234 Privet Dr.", "Longmont", "CO", "United States", "80503");
+		CreditCard customer1CreditCard = new CreditCard("Johanna Blumenthal", CardType.VISA, "5555 5555 5555 5555",
+				"02/22", "453", customer1Address);
+		customer1 = new Customer("Penny", "W00f!", "Penny Blumenthal", customer1Address, "penny@gmail.com",
+				customer1CreditCard);
+
 	}
 
 	@Test
 	public void testCreateCustomer() {
-		
-		ICustomerSvc customerService = serviceFactory.getCustomerService();
-		customerService.createCustomer(customer1);
-		System.out.println("testCreateCustomer PASSED");
-		
-		CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getCustomerService();
-		customerServiceImpl.createCustomer(customer1);
-		System.out.println("testCreateCustomer PASSED");
+		try {
+			ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);
+			customerService.createCustomer(customer1);
+			System.out.println("testCreateCustomer PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
+
+		try {
+			CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getService(ICustomerSvc.NAME);
+			customerServiceImpl.createCustomer(customer1);
+			System.out.println("testCreateCustomer PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
 	}
-	
+
 	@Test
 	public void getCustomerByUserName() {
-		
+
 		String userName = customer1.getUserName();
-		
-		ICustomerSvc customerService = serviceFactory.getCustomerService();
-		assertTrue(customerService.getCustomerByUserName(userName)!= null);
-		System.out.println("testGetCustomerByUserName PASSED");
-		
-		CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getCustomerService();
-		assertTrue(customerServiceImpl.getCustomerByUserName(userName)!= null);
-		System.out.println("testGetCustomerByUsername PASSED");
-		
+
+		try {
+			ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);
+			assertTrue(customerService.getCustomerByUserName(userName) != null);
+			System.out.println("testGetCustomerByUserName PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
+
+		try {
+			CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getService(ICustomerSvc.NAME);
+			assertTrue(customerServiceImpl.getCustomerByUserName(userName) != null);
+			System.out.println("testGetCustomerByUsername PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
 	}
-	
+
 	@Test
-	public void testUpdateUser() {
-	ICustomerSvc customerService = serviceFactory.getCustomerService();
-	customerService.updateCustomer(customer1);
-	System.out.println("testUpdateCustomer PASSED");
-	
-	CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getCustomerService();
-	customerServiceImpl.updateCustomer(customer1);
-	System.out.println("testUpdateCustomer PASSED");
-	
+	public void testUpdateCustomer() {
+		try {
+			ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);
+			customerService.createCustomer(customer1);
+			customerService.updateCustomer(customer1);
+			System.out.println("testUpdateCustomer PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
+		try {
+			CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getService(ICustomerSvc.NAME);
+			customerServiceImpl.updateCustomer(customer1);
+			System.out.println("testUpdateCustomer PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
+
 	}
-	
+
 	@Test
 	public void testDeleteCustomer() {
-		
+
 		String userName = customer1.getUserName();
+
+		try {
+			ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);
+			customerService.createCustomer(customer1);
+			customerService.deleteCustomer(userName);
+			System.out.println("testDeleteCustomer PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
 		
-		ICustomerSvc customerService = serviceFactory.getCustomerService();
-		customerService.deleteCustomer(userName);
-		System.out.println("testDeleteCustomer PASSED");
-		
-		CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getCustomerService();
-		customerServiceImpl.deleteCustomer(userName);
-		System.out.println("testDeleteCustomer PASSED");
+
+		try {
+			CustomerSvcImpl customerServiceImpl = (CustomerSvcImpl) serviceFactory.getService(ICustomerSvc.NAME);
+			customerServiceImpl.createCustomer(customer1);
+			customerServiceImpl.deleteCustomer(userName);
+			System.out.println("testDeleteCustomer PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("Service didn't load");
+		} catch (CustomerException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
 	}
 
 }

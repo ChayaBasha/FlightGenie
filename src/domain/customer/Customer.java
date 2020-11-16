@@ -12,6 +12,11 @@ import service.exception.CustomerConstructorException;
 
 public class Customer extends User {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Holds the name of the customer
 	 */
 	private String name;
@@ -79,7 +84,7 @@ public class Customer extends User {
 			this.email = email;
 			this.creditCard = creditCard;
 
-		}
+		} else
 		throw new CustomerConstructorException("Customer Fields cannot be null");
 	}
 }

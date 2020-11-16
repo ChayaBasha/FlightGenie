@@ -1,5 +1,5 @@
-
-
+# This is the key lookUp table for the services
+# Name = implementation path
 
 
 ICustomerSvc = service.CustomerSvcImpl

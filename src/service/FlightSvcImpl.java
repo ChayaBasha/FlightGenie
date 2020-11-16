@@ -57,9 +57,8 @@ public class FlightSvcImpl implements IFlightSvc {
 	 * files in the folder/directory specified (which is flightFolder)
 	 */
 	public List<Flight> getAllFlights() throws FlightException {
-
+		ArrayList<Flight> flights = new ArrayList<Flight>();
 		if (this.flightFolder.isDirectory()) {
-			ArrayList<Flight> flights = new ArrayList<Flight>();
 			for (File file : this.flightFolder.listFiles()) {
 				if (file.isFile()) {
 					try {
@@ -80,7 +79,7 @@ public class FlightSvcImpl implements IFlightSvc {
 			}
 		} else
 			throw new FlightException("can't find directory flightFolder " + this.flightFolder.getAbsolutePath());
-		return null;
+		return flights;
 	}
 
 	@Override

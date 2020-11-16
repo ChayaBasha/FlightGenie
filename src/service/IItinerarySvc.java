@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import domain.customer.itinerary.Itinerary;
+import service.exception.ItineraryException;
 
 /**
  * Interface for the itinerary service
@@ -19,10 +20,11 @@ public interface IItinerarySvc extends IService{
 	 * @param itinerary
 	 */
 	
-	public void createItinerary(Itinerary itinerary);
-	public List<Itinerary> getItineraryByCustomer(String userName);
-	public Itinerary getItineraryById(String itineraryId);
-	public void updateItinerary(Itinerary itinerary);
-	public void deleteItinerary(String itineraryId);
+	public void createItinerary(Itinerary itinerary) throws ItineraryException;
+	public List<Itinerary> getAllItineraries() throws ItineraryException;
+	public List<Itinerary> getItineraryByCustomer(String userName)throws ItineraryException;
+	public Itinerary getItineraryById(String userName, String itineraryId) throws ItineraryException;
+	public void updateItinerary(Itinerary itinerary) throws ItineraryException;
+	public void deleteItinerary(Itinerary itinerary) throws ItineraryException;
 
 }

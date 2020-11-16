@@ -1,7 +1,7 @@
 package service.FactoryTest;
 
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 
@@ -16,37 +16,62 @@ import service.IUserSvc;
 import service.ItinerarySvcImpl;
 import service.ServiceFactory;
 import service.UserSvcImpl;
-
+import service.exception.ServiceLoadException;
 
 public class ServiceFactoryTest {
-	
+
 	ServiceFactory serviceFactory;
 
 	@Before
 	public void setUp() throws Exception {
-		serviceFactory = new ServiceFactory();
+		serviceFactory = ServiceFactory.getInstance();
 	}
+
 	@Test
 	public void testGetUserService() {
-		IUserSvc userService = (IUserSvc)serviceFactory.getUserService();
-		assertTrue(userService instanceof UserSvcImpl);
+		try {
+			IUserSvc userService = (IUserSvc) serviceFactory.getService(IUserSvc.NAME);
+			assertTrue(userService instanceof UserSvcImpl);
+			System.out.println("test GetUserService Passed");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("service didn't load");
+		}
 	}
-	
+
 	@Test
 	public void testGetCustomerService() {
-		ICustomerSvc customerService = (ICustomerSvc)serviceFactory.getCustomerService();
-		assertTrue(customerService instanceof CustomerSvcImpl);
+		try {
+			ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);
+			assertTrue(customerService instanceof CustomerSvcImpl);
+			System.out.println("test GetCustomerService PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("service didn't load");
+		}
 	}
-	
+
 	@Test
 	public void testGetFlightService() {
-		IFlightSvc flightService = (IFlightSvc)serviceFactory.getFlghtService();
-		assertTrue(flightService instanceof FlightSvcImpl);
+		try {
+			IFlightSvc flightService = (IFlightSvc) serviceFactory.getService(IFlightSvc.NAME);
+			System.out.println("test Get Flight Service PASSED");
+			assertTrue(flightService instanceof FlightSvcImpl);
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("service didn't load");
+		}
 	}
 
 	@Test
 	public void testGetItineraryService() {
-		IItinerarySvc itineraryService = (IItinerarySvc)serviceFactory.getItineraryService();
-		assertTrue(itineraryService instanceof ItinerarySvcImpl);
+		try {
+			IItinerarySvc itineraryService = (IItinerarySvc) serviceFactory.getService(IItinerarySvc.NAME);
+			assertTrue(itineraryService instanceof ItinerarySvcImpl);
+			System.out.println("test GEtItinerary Service PASSED");
+		} catch (ServiceLoadException e) {
+			e.printStackTrace();
+			fail("service didn't load");
+		}
 	}
 }

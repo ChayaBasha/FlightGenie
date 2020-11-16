@@ -1,14 +1,16 @@
 package service;
 
-import java.time.LocalDateTime;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.customer.itinerary.BookingStatus;
 import domain.customer.itinerary.Itinerary;
-import domain.flights.Airline;
-import domain.flights.Airport;
-import domain.flights.Flight;
+import service.exception.ItineraryException;
 /**
  * Implements the Itinerary Services 
  * 
@@ -17,53 +19,121 @@ import domain.flights.Flight;
  */
 
 public class ItinerarySvcImpl implements IItinerarySvc{
+	
+	private File itineraryFolder = new File("itineraries");
 
 	@Override
 	/**
 	 * allows customer to save a new itinerary to the data store
 	 */
-	public void createItinerary(Itinerary itinerary) {
-		System.out.println("Create Itinerary Method in Itinerary Service implementation was called");
-		
+	public void createItinerary(Itinerary itinerary) throws ItineraryException{
+		if (itinerary != null) {
+			try {
+				itineraryFolder.mkdirs();
+				ObjectOutputStream output = new ObjectOutputStream(
+						new FileOutputStream(itineraryFolder.toPath().resolve((itinerary.getOwner() + itinerary.getItineraryId() +".itinerary.out")).toFile()));
+
+				output.writeObject(itinerary);
+				output.flush();
+				output.close();
+			} catch (IOException e) {
+				throw new ItineraryException("Cannot save itinerary");
+
+			}
+		} else
+			throw new ItineraryException("Cannot save itinerary that is null");
 	}
 
+	public List<Itinerary> getAllItineraries() throws ItineraryException {
+		ArrayList<Itinerary> itineraries = new ArrayList<Itinerary>();
+		if (this.itineraryFolder.isDirectory()) {
+			for (File file : this.itineraryFolder.listFiles()) {
+				if (file.isFile()) {
+					try {
+						ObjectInputStream readItineraries = new ObjectInputStream(new FileInputStream(file));
+						Object fileContents = readItineraries.readObject();
+						readItineraries.close();
+						if (fileContents instanceof Itinerary) {
+							itineraries.add((Itinerary) fileContents);
+						} else
+							throw new ItineraryException("file contents are not an itinerary " + file.getAbsolutePath());
+					} catch (IOException e) {
+						throw new ItineraryException("IO problems " + file.getAbsolutePath());
+					} catch (ClassNotFoundException e) {
+						throw new ItineraryException("class not found");
+					}
+				} else
+					throw new ItineraryException("not a file :-( " + file.getAbsolutePath());
+			}
+		} else
+			throw new ItineraryException("can't find directory itineraryFolder " + this.itineraryFolder.getAbsolutePath());
+		return itineraries;
+	}
 	@Override
 	/**
 	 * returns all of the customers itineraries 
 	 */
-	public List<Itinerary> getItineraryByCustomer(String userName) {
-		System.out.println("Get Itinerary for Customer Method in Itinerary Service implementation was called");
-		return new ArrayList<Itinerary>();
+	public List<Itinerary> getItineraryByCustomer(String userName) throws ItineraryException {
+		ArrayList<Itinerary> ownerItineraries = new ArrayList<Itinerary>();
+		List<Itinerary> itineraries = getAllItineraries();
+		for (int i = 0; i < itineraries.size(); i++) {
+			if (itineraries.get(i).getOwner().equals(userName)) {
+				ownerItineraries.add(itineraries.get(i));
+			}
+		}
+		
+		return ownerItineraries;
+
 	}
 
 	@Override
 	/**
 	 * gets a particular itinerary by ID...since behavior not implemented with data, I am using the concrete data for testing...will serve up data later
 	 */
-	public Itinerary getItineraryById(String itineraryId) {
-		
-		Flight flight1 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO, LocalDateTime.parse("2019-06-23T12:30:00"), Airport.BOSTON_MA, LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
-		
-		System.out.println("Get Itinerary By Id Method in Itinerary Service implementation was called");
-		return new Itinerary("123456AFD", "FrogBomb", "Penny Blumenthal", flight1, "1C", BookingStatus.RESERVED);
+	public Itinerary getItineraryById(String userName, String itineraryId) throws ItineraryException {
+		Itinerary itinerary = null;
+		List<Itinerary> ownerItineraries = getItineraryByCustomer(userName);
+		for (int i = 0; i < ownerItineraries.size(); i++) {
+			if (ownerItineraries.get(i).getItineraryId().equals(itineraryId)) {
+				 itinerary = ownerItineraries.get(i);
+			};
+		} 
+		if(itinerary==null) {
+			throw new ItineraryException("no itinerary for user " + userName + " with Id " + itineraryId);
+		}
+		return itinerary;
+
 	}
 
 	@Override
 	/**
 	 * Allows the customer to change the itinerary
 	 */
-	public void updateItinerary(Itinerary itinerary) {
-		System.out.println("Update Itinerary Method in Itinerary Service implementation was called");
+	public void updateItinerary(Itinerary itinerary) throws ItineraryException {
+		Itinerary existingItinerary = this.getItineraryById(itinerary.getOwner(), itinerary.getItineraryId());
+		existingItinerary.setBookingStatus(itinerary.getBookingStatus());
+		existingItinerary.setPassengerName(itinerary.getPassengerName());
+		existingItinerary.setSeat(itinerary.getSeatNumber());
 		
+		this.createItinerary(existingItinerary);
 	}
 
 	@Override
 	/**
 	 * allows the customer to delete the itinerary from the data store
 	 */
-	public void deleteItinerary(String itineraryId) {
-		System.out.println("Delete Itinerary Method in Itinerary Service implementation was called");
+	public void deleteItinerary(Itinerary itinerary) throws ItineraryException {
+		if(itinerary != null) {
+			
+			File existingItinerary = itineraryFolder.toPath().resolve(itinerary.getOwner() + itinerary.getItineraryId() +  ".itinerary.out").toFile();
+			if(existingItinerary.exists()) {
+				existingItinerary.delete();
+			} else throw new ItineraryException ("could not delete " + itinerary.getItineraryId() + " for user " + itinerary.getOwner());
 		
-	}
+		
+	} else 
+		throw new ItineraryException (" null input");
+
+}
 
 }
