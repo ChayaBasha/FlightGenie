@@ -1,5 +1,7 @@
 package domain;
 
+import java.io.Serializable;
+
 /**
  * * This super class represents the various users for the flight reservation
  * systen.
@@ -7,8 +9,12 @@ package domain;
  * @author johannablumenthal
  * @version 0.1
  */
-public class User {
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Holds the unique userName for the user, This field will be used as the
 	 * identifier in the DataStore
@@ -23,11 +29,11 @@ public class User {
 		return userName;
 	}
 
-	public void setUserName(String userName) {
-		if (userName != null) {
-			this.userName = userName;
-		}
-	}
+//	public void setUserName(String userName) {
+//		if (userName != null) {
+//			this.userName = userName;
+//		}
+//	}
 
 	public String getPassword() {
 		return password;

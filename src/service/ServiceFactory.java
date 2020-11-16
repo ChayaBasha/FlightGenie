@@ -1,5 +1,7 @@
 package service;
 
+import service.exception.ServiceLoadException;
+
 /**
  * Factory to create the various services as needed
  * 
@@ -8,21 +10,32 @@ package service;
  */
 
 public class ServiceFactory {
-	
-	public IUserSvc getUserService() {
-		return new UserSvcImpl();
+	private ServiceFactory() {
+		
 	}
 	
-	public ICustomerSvc getCustomerService() {
-		return new CustomerSvcImpl();
-	}
+	private static ServiceFactory serviceFactory = new ServiceFactory();
 	
-	public IFlightSvc getFlghtService() {
-		return new FlightSvcImpl();
-	}
+	public static ServiceFactory getInstance() {
+		return serviceFactory;
+	};
 	
-	public IItinerarySvc getItineraryService() {
-		return new ItinerarySvcImpl();
+	public IService getService(String serviceName) throws ServiceLoadException {
+		
+		try {
+			Class<?> c = Class.forName(getImplName(serviceName));
+			return (IService )c.newInstance();
+		} catch (Exception e) {
+			throw new ServiceLoadException(serviceName + "not loaded");
+		}
+	};
+	
+	private String getImplName (String serviceName) throws Exception {
+		java.util.Properties props = new java.util.Properties();
+		java.io.FileInputStream fis = new java.io.FileInputStream("serviceNames.txt");
+		props.load(fis);
+		fis.close();
+		return props.getProperty(serviceName);
 	}
 
 }

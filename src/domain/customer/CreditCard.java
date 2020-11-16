@@ -1,5 +1,7 @@
 package domain.customer;
 
+import java.io.Serializable;
+
 /**
  * class used to hold the creditCard information for a customer
  * 
@@ -7,7 +9,12 @@ package domain.customer;
  *
  */
 
-public class CreditCard {
+public class CreditCard implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Holds the name on the credit/debit card, which could be different from the
 	 * customer

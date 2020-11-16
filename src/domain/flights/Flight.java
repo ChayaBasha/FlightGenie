@@ -1,6 +1,7 @@
 package domain.flights;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -12,7 +13,12 @@ import java.time.LocalDateTime;
  *
  */
 
-public class Flight {
+public class Flight implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Holds the airline from the enumerated list of airlines/codes for the flight
 	 */
@@ -234,5 +240,9 @@ public class Flight {
 			}
 		}
 		return false;
+	}
+	
+	public String createFlightId() {
+		return this.getAirline().getAirlineCode() + Short.toString(this.getFlightNumber()) + this.getDepartureTime().toString();
 	}
 };

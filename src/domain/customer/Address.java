@@ -1,12 +1,18 @@
 package domain.customer;
 
+import java.io.Serializable;
+
 /**
  * Class used to store addresses for users and for billing
  * 
  * @author johannablumenthal
  * @version 0.1
  */
-public class Address {
+public class Address implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Holds the street address including the number and street and type of street
 	 * ex 1234 Bux way ex 34B 8th Ave. ex 375 Iris Ave Suite 2

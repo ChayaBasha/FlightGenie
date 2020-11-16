@@ -1,6 +1,7 @@
 package domain.customer;
 
 import domain.User;
+import service.exception.CustomerConstructorException;
 
 /**
  * this subclass extends the user class as it is a type of user the Customer
@@ -68,16 +69,17 @@ public class Customer extends User {
 		}
 	}
 
-	public Customer(String userName, String password, String name, Address address, String email,
-			CreditCard creditCard) {
+	public Customer(String userName, String password, String name, Address address, String email, CreditCard creditCard)
+			throws CustomerConstructorException {
 		super(userName, password);
-		assert (name != null && address != null && creditCard != null);
-		this.name = name;
-		this.address = address;
-		this.email = email;
-		this.creditCard = creditCard;
+		if (name != null && address != null && creditCard != null) {
 
+			this.name = name;
+			this.address = address;
+			this.email = email;
+			this.creditCard = creditCard;
+
+		}
+		throw new CustomerConstructorException("Customer Fields cannot be null");
 	}
-	
 }
-

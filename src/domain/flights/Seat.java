@@ -1,5 +1,7 @@
 package domain.flights;
 
+import java.io.Serializable;
+
 /**
  * class designed to track the bookings for each seat with the seat number
  * 
@@ -8,7 +10,15 @@ package domain.flights;
  *
  */
 
-public class Seat {
+public class Seat implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	
 	/**
 	 * Holds the unique seat number for the particular flight
 	 */

@@ -10,7 +10,9 @@ import domain.customer.itinerary.Itinerary;
  *
  */
 
-public interface IItinerarySvc {
+public interface IItinerarySvc extends IService{
+	
+	public final String NAME = "IItinerarySvc";
 	
 	/**
 	 * CRUD functions for Itinerary

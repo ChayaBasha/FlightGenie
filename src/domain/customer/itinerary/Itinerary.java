@@ -2,6 +2,7 @@ package domain.customer.itinerary;
 
 import domain.flights.Flight;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -12,8 +13,12 @@ import java.util.Date;
  * @author johannablumenthal
  *
  */
-public class Itinerary {
+public class Itinerary implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String itineraryId;
 	/**
 	 * Holds the customer ID who made the itinerary

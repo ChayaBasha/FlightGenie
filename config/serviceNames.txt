@@ -1,0 +1,9 @@
+
+
+
+
+ICustomerSvc = service.CustomerSvcImpl
+IFlightSvc = service.FlightSvcImpl
+IItinerarySvc = service.ItinerarySvcImpl
+IUserSvc = service.UserSvcImpl
+

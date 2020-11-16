@@ -7,7 +7,9 @@ import domain.User;
  *
  */
 
-public interface IUserSvc {
+public interface IUserSvc extends IService {
+	
+	public final String NAME = "IUserSvc";
 	
 	/**
 	 * methods needed for register and login functionality
