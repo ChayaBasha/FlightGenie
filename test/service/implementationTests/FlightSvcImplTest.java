@@ -23,7 +23,7 @@ public class FlightSvcImplTest extends TestCase {
 	private LocalDateTime endDepartureTimeRange;
 	private Flight flight1;
 	private Flight flight2;
-	private Flight flight3;
+	
 
 	@Override
 	protected void setUp() throws Exception {
@@ -40,9 +40,7 @@ public class FlightSvcImplTest extends TestCase {
 		flight2 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO,
 				LocalDateTime.parse("2019-06-23T10:30:00"), Airport.BOSTON_MA,
 				LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
-		flight3 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO,
-				LocalDateTime.parse("2019-06-24T12:30:00"), Airport.BOSTON_MA,
-				LocalDateTime.parse("2019-06-24T18:38:00"), 79.00, 53.00);
+		
 
 	}
 
