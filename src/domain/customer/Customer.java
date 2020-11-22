@@ -1,20 +1,24 @@
 package domain.customer;
 
-import domain.User;
+import java.io.Serializable;
+
+import domain.UserCredentials;
 import service.exception.CustomerConstructorException;
 
 /**
- * this subclass extends the user class as it is a type of user the Customer
+ * The Customer class is one of the main users of the system
  * 
  * @author johannablumenthal
  *
  */
 
-public class Customer extends User {
+public class Customer implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private UserCredentials customerCredentials;
 
 	/**
 	 * Holds the name of the customer
@@ -34,6 +38,14 @@ public class Customer extends User {
 	 */
 	private CreditCard creditCard;
 
+	public UserCredentials getCustomerCredentials() {
+		return customerCredentials;
+	}
+
+	public void setCustomerCredentials(UserCredentials customerCredentials) {
+		this.customerCredentials = customerCredentials;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -74,11 +86,12 @@ public class Customer extends User {
 		}
 	}
 
-	public Customer(String userName, String password, String name, Address address, String email, CreditCard creditCard)
+	public Customer(UserCredentials customerCredentials, String name, Address address, String email, CreditCard creditCard)
 			throws CustomerConstructorException {
-		super(userName, password);
-		if (name != null && address != null && creditCard != null) {
+		
+		if (customerCredentials != null && name != null && address != null && creditCard != null) {
 
+			this.customerCredentials = customerCredentials;
 			this.name = name;
 			this.address = address;
 			this.email = email;
@@ -87,4 +100,6 @@ public class Customer extends User {
 		} else
 		throw new CustomerConstructorException("Customer Fields cannot be null");
 	}
+
+	
 }

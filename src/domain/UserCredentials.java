@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author johannablumenthal
  * @version 0.1
  */
-public class User implements Serializable {
+public class UserCredentials implements Serializable {
 
 	/**
 	 * 
@@ -45,7 +45,7 @@ public class User implements Serializable {
 		}
 	}
 
-	public User(String userName, String password) {
+	public UserCredentials(String userName, String password) {
 		assert (userName != null && userName != "" && password != null && password != "");
 		this.userName = userName;
 		this.password = password;
@@ -58,25 +58,26 @@ public class User implements Serializable {
 	 * @param users
 	 * @return whether unique or not
 	 */
-	public boolean isUniqueUser(User[] users) {
-		for (int i = 0; i < users.length; i++) {
-			User user = users[i];
-			if (user.getUserName() == this.getUserName()) {
-				return false;
-			}
-		}
-		return true;
-	};
+//	public boolean isUniqueUser(User[] users) {
+//		for (int i = 0; i < users.length; i++) {
+//			User user = users[i];
+//			if (user.getUserName() == this.getUserName()) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	};
 	/**
 	 * compares whether two users are the same in order to be used in authentication
 	 * @param user
 	 * @return
 	 */
 
-	public boolean equals(User user) {
-		if (user.getUserName() == this.getUserName() && user.getPassword() == this.getPassword()) {
+	public boolean equals(UserCredentials userCredentials) {
+		if (userCredentials.getUserName() == this.getUserName() && userCredentials.getPassword() == this.getPassword()) {
 			return true;
 		} else
 			return false;
 	};
 };
+

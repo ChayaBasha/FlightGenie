@@ -196,7 +196,7 @@
     <lifeline xmi:type="uml:Lifeline" xmi:id="_qcnREB_LEeuJlIlXC7ZC3w" name="Service" coveredBy="_nhWH4B_NEeuJlIlXC7ZC3w _msv3oB_MEeuJlIlXC7ZC3w _mtkXAB_MEeuJlIlXC7ZC3w _b3nhIB_MEeuJlIlXC7ZC3w _4KnKwB_OEeuJlIlXC7ZC3w _ACzPAB_PEeuJlIlXC7ZC3w _fkrhYB_PEeuJlIlXC7ZC3w _sbajQB_PEeuJlIlXC7ZC3w _scPpsB_PEeuJlIlXC7ZC3w"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_rl5NUB_LEeuJlIlXC7ZC3w" name="Domain" coveredBy="_b26WgB_MEeuJlIlXC7ZC3w _nhVg0B_NEeuJlIlXC7ZC3w _g25MoR_OEeuJlIlXC7ZC3w _g3u6IB_OEeuJlIlXC7ZC3w _XmDd8R_PEeuJlIlXC7ZC3w _Xm1hEB_PEeuJlIlXC7ZC3w"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_sed0EB_LEeuJlIlXC7ZC3w" name="DataStore" coveredBy="_msv3oR_MEeuJlIlXC7ZC3w _mtjv8R_MEeuJlIlXC7ZC3w _sbbKUB_PEeuJlIlXC7ZC3w _scPCoB_PEeuJlIlXC7ZC3w"/>
-    <lifeline xmi:type="uml:Lifeline" xmi:id="_s8jeQB_LEeuJlIlXC7ZC3w" name="Business" coveredBy="_VTOnEB_MEeuJlIlXC7ZC3w _b25vcB_MEeuJlIlXC7ZC3w _VT1rEB_MEeuJlIlXC7ZC3w _b3nhIR_MEeuJlIlXC7ZC3w _I_bBMR_OEeuJlIlXC7ZC3w _g25MoB_OEeuJlIlXC7ZC3w _g3vhMB_OEeuJlIlXC7ZC3w _4KmjsB_OEeuJlIlXC7ZC3w"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_s8jeQB_LEeuJlIlXC7ZC3w" name="Business" coveredBy="_VTOnEB_MEeuJlIlXC7ZC3w _b25vcB_MEeuJlIlXC7ZC3w _b3nhIR_MEeuJlIlXC7ZC3w _VT1rEB_MEeuJlIlXC7ZC3w _I_bBMR_OEeuJlIlXC7ZC3w _g25MoB_OEeuJlIlXC7ZC3w _g3vhMB_OEeuJlIlXC7ZC3w _4KmjsB_OEeuJlIlXC7ZC3w"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_vDri0B_LEeuJlIlXC7ZC3w" name="Presentation" coveredBy="_ExmAwR_MEeuJlIlXC7ZC3w _VTOAAB_MEeuJlIlXC7ZC3w _EyIMQB_MEeuJlIlXC7ZC3w _b3nhIR_MEeuJlIlXC7ZC3w _VT2SIB_MEeuJlIlXC7ZC3w _9E9vcB_PEeuJlIlXC7ZC3w _8MBnMB_NEeuJlIlXC7ZC3w _I_bBMB_OEeuJlIlXC7ZC3w _ACz2EB_PEeuJlIlXC7ZC3w _XmDd8B_PEeuJlIlXC7ZC3w _Xm1hER_PEeuJlIlXC7ZC3w"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_6VGzwB_LEeuJlIlXC7ZC3w" name="" represents="_6VHa0B_LEeuJlIlXC7ZC3w" coveredBy="_ExmAwB_MEeuJlIlXC7ZC3w _EyIzUB_MEeuJlIlXC7ZC3w _9E9vcR_PEeuJlIlXC7ZC3w _8MBAIB_NEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_ExmAwB_MEeuJlIlXC7ZC3w" name="Message9SendEvent" covered="_6VGzwB_LEeuJlIlXC7ZC3w" message="_ExlZsB_MEeuJlIlXC7ZC3w"/>
@@ -206,16 +206,16 @@
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_b25vcB_MEeuJlIlXC7ZC3w" name="Message23SendEvent" covered="_s8jeQB_LEeuJlIlXC7ZC3w" message="_b25IYB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_b26WgB_MEeuJlIlXC7ZC3w" name="Message23ReceiveEvent" covered="_rl5NUB_LEeuJlIlXC7ZC3w" message="_b25IYB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nhVg0B_NEeuJlIlXC7ZC3w" name="Message39SendEvent" covered="_rl5NUB_LEeuJlIlXC7ZC3w" message="_nhU5wB_NEeuJlIlXC7ZC3w"/>
-    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_msv3oR_MEeuJlIlXC7ZC3w" name="Message30ReceiveEvent" covered="_sed0EB_LEeuJlIlXC7ZC3w" message="_msvQkB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_nhWH4B_NEeuJlIlXC7ZC3w" name="Message39ReceiveEvent" covered="_qcnREB_LEeuJlIlXC7ZC3w" message="_nhU5wB_NEeuJlIlXC7ZC3w"/>
-    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_EyIMQB_MEeuJlIlXC7ZC3w" name="Message14SendEvent" covered="_vDri0B_LEeuJlIlXC7ZC3w" message="_EyHlMB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_msv3oB_MEeuJlIlXC7ZC3w" name="Message30SendEvent" covered="_qcnREB_LEeuJlIlXC7ZC3w" message="_msvQkB_MEeuJlIlXC7ZC3w"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_EyIMQB_MEeuJlIlXC7ZC3w" name="Message14SendEvent" covered="_vDri0B_LEeuJlIlXC7ZC3w" message="_EyHlMB_MEeuJlIlXC7ZC3w"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_msv3oR_MEeuJlIlXC7ZC3w" name="Message30ReceiveEvent" covered="_sed0EB_LEeuJlIlXC7ZC3w" message="_msvQkB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_EyIzUB_MEeuJlIlXC7ZC3w" name="Message14ReceiveEvent" covered="_6VGzwB_LEeuJlIlXC7ZC3w" message="_EyHlMB_MEeuJlIlXC7ZC3w"/>
-    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VT1rEB_MEeuJlIlXC7ZC3w" name="Message21SendEvent" covered="_s8jeQB_LEeuJlIlXC7ZC3w" message="_VT1EAB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_mtjv8R_MEeuJlIlXC7ZC3w" name="Message35SendEvent" covered="_sed0EB_LEeuJlIlXC7ZC3w" message="_mtjv8B_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_mtkXAB_MEeuJlIlXC7ZC3w" name="Message35ReceiveEvent" covered="_qcnREB_LEeuJlIlXC7ZC3w" message="_mtjv8B_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_b3nhIB_MEeuJlIlXC7ZC3w" name="Message28SendEvent" covered="_qcnREB_LEeuJlIlXC7ZC3w" message="_b3m6EB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_b3nhIR_MEeuJlIlXC7ZC3w" name="Message28ReceiveEvent" covered="_s8jeQB_LEeuJlIlXC7ZC3w _vDri0B_LEeuJlIlXC7ZC3w" message="_b3m6EB_MEeuJlIlXC7ZC3w"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VT1rEB_MEeuJlIlXC7ZC3w" name="Message21SendEvent" covered="_s8jeQB_LEeuJlIlXC7ZC3w" message="_VT1EAB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_VT2SIB_MEeuJlIlXC7ZC3w" name="Message21ReceiveEvent" covered="_vDri0B_LEeuJlIlXC7ZC3w" message="_VT1EAB_MEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9E9vcB_PEeuJlIlXC7ZC3w" name="Message69SendEvent" covered="_vDri0B_LEeuJlIlXC7ZC3w" message="_9E8hUB_PEeuJlIlXC7ZC3w"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9E9vcR_PEeuJlIlXC7ZC3w" name="Message69ReceiveEvent" covered="_6VGzwB_LEeuJlIlXC7ZC3w" message="_9E8hUB_PEeuJlIlXC7ZC3w"/>
@@ -461,8 +461,13 @@
     <packagedElement xmi:type="uml:InformationFlow" xmi:id="_WwAMcB_fEeuz49KXWT1DEA" informationSource="_EDeb4B_fEeuz49KXWT1DEA" informationTarget="_uNkVAB_dEeuz49KXWT1DEA"/>
     <packagedElement xmi:type="uml:InformationFlow" xmi:id="_YGCyUB_fEeuz49KXWT1DEA" name="stores/retrieves" informationSource="_I8BfMB_fEeuz49KXWT1DEA" informationTarget="_Z9B-kB_eEeuz49KXWT1DEA"/>
     <packagedElement xmi:type="uml:InformationFlow" xmi:id="_aNaugB_fEeuz49KXWT1DEA" name="stores/retrieves" informationSource="_GSl-0B_fEeuz49KXWT1DEA" informationTarget="_x0djMB_dEeuz49KXWT1DEA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zpCYICqyEeuS-9o71otThA" name="IService"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_pK2pEB_dEeuz49KXWT1DEA" name="Business"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_pK2pEB_dEeuz49KXWT1DEA" name="Business">
+    <packagedElement xmi:type="uml:Class" xmi:id="_dvRaECqzEeuS-9o71otThA" name="UserManager"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hKRhUCqzEeuS-9o71otThA" name="FlightManager"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_jYRp8CqzEeuS-9o71otThA" name="ITineraryManager"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_rvl2sB_dEeuz49KXWT1DEA" name="Presentation"/>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_dkfaEBeyEeumKbVlEEIXIQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dkh2UBeyEeumKbVlEEIXIQ" source="http://www.eclipse.org/uml2/2.0.0/UML">

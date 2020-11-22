@@ -36,7 +36,7 @@ public class CustomerSvcImpl implements ICustomerSvc {
 			try {
 				customerFolder.mkdirs();
 				ObjectOutputStream output = new ObjectOutputStream(
-						new FileOutputStream(customerFolder.toPath().resolve((customer.getUserName() +".customer.out")).toFile()));
+						new FileOutputStream(customerFolder.toPath().resolve((customer.getCustomerCredentials().getUserName() +".customer.out")).toFile()));
 
 				output.writeObject(customer);
 				output.flush();
@@ -79,8 +79,8 @@ public class CustomerSvcImpl implements ICustomerSvc {
 
 	@Override
 	public void updateCustomer(Customer customer) throws CustomerException {
-		Customer existingCustomer = this.getCustomerByUserName(customer.getUserName());
-		existingCustomer.setPassword(customer.getPassword());
+		Customer existingCustomer = this.getCustomerByUserName(customer.getCustomerCredentials().getUserName());
+		existingCustomer.getCustomerCredentials().setPassword(customer.getCustomerCredentials().getPassword());
 		existingCustomer.setName(customer.getName());
 		existingCustomer.setAddress(customer.getAddress());
 		existingCustomer.setEmail(customer.getEmail());

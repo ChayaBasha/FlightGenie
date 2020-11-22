@@ -241,8 +241,18 @@ public class Flight implements Serializable {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Create FlightId creates a unique flight ID for each flight based on the
+	 * fields that are part of the flight instance and can be parsed to filter for more efficient queries even  using the file system  as the data store
+	 * 
+	 * @return
+	 */
+
 	public String createFlightId() {
-		return this.getAirline().getAirlineCode() + Short.toString(this.getFlightNumber()) + this.getDepartureTime().toString();
+		return this.getDepartureCity().getAirportCode() + "_" + this.getArrivalCity().getAirportCode() + "_"
+				+ this.getDepartureTime().toString() + "_" + this.getArrivalTime().toString() + "_" 
+				+ this.getAirline().getAirlineCode() + "_" + Short.toString(this.getFlightNumber());
+				
 	}
 };

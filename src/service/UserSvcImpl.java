@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import domain.User;
+import domain.UserCredentials;
 import service.exception.UserException;
 /**
  * User services implemented 
@@ -45,16 +45,16 @@ public class UserSvcImpl implements IUserSvc{
 	/**
 	 * will compare username and password for login
 	 */
-	public boolean authenticateUser(User user) throws UserException {
-		if (user != null) {
-			String userName = user.getUserName();
+	public boolean authenticateUser(UserCredentials userCredentials) throws UserException {
+		if (userCredentials != null) {
+			String userName = userCredentials.getUserName();
 			try {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(
 						customerFolder.toPath().resolve(userName + ".customer.out").toFile()));
 				Object fileObject = input.readObject();
 				input.close();
-				if (fileObject instanceof User) {
-					return ((User) fileObject).getPassword().equals(user.getPassword());
+				if (fileObject instanceof UserCredentials) {
+					return ((UserCredentials) fileObject).getPassword().equals(userCredentials.getPassword());
 				} else
 					throw new UserException(userName + " not associated with a  User");
 
