@@ -82,5 +82,20 @@ public class Address implements Serializable {
 		this.country = country;
 		this.zipCode = zipCode;
 	}
+	
+	/**
+	 * Equals method to compare customer addresses
+	 * @param address
+	 * @return
+	 */
 
+	public boolean equals(Address address) {
+		if(address.getStreet().equals(this.getStreet()) &&
+				address.getCity().equals(this.getCity()) &&
+				address.getState().equals(this.getState()) &&
+				address.getZipCode().equals(this.getZipCode())) {
+			return true;
+		} else 
+			return false;
+	}
 }

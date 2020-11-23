@@ -3,6 +3,8 @@ package service.implementationTests;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.UserCredentials;
+
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 
@@ -26,10 +28,11 @@ public class CustomerSvcImplTest extends TestCase {
 	protected void setUp() throws Exception {
 
 		serviceFactory = ServiceFactory.getInstance();
+		UserCredentials customerCredentials = new UserCredentials("Penny", "W00f!");
 		Address customer1Address = new Address(" 1234 Privet Dr.", "Longmont", "CO", "United States", "80503");
 		CreditCard customer1CreditCard = new CreditCard("Johanna Blumenthal", CardType.VISA, "5555 5555 5555 5555",
 				"02/22", "453", customer1Address);
-		customer1 = new Customer("Penny", "W00f!", "Penny Blumenthal", customer1Address, "penny@gmail.com",
+		customer1 = new Customer(customerCredentials, "Penny Blumenthal", customer1Address, "penny@gmail.com",
 				customer1CreditCard);
 
 	}
@@ -64,7 +67,7 @@ public class CustomerSvcImplTest extends TestCase {
 	@Test
 	public void getCustomerByUserName() {
 
-		String userName = customer1.getUserName();
+		String userName = customer1.getCustomerCredentials().getUserName();
 
 		try {
 			ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);
@@ -122,7 +125,7 @@ public class CustomerSvcImplTest extends TestCase {
 	@Test
 	public void testDeleteCustomer() {
 
-		String userName = customer1.getUserName();
+		String userName = customer1.getCustomerCredentials().getUserName();
 
 		try {
 			ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);

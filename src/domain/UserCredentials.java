@@ -3,8 +3,7 @@ package domain;
 import java.io.Serializable;
 
 /**
- * * This super class represents the various users for the flight reservation
- * systen.
+ * * This class represents the login credentials for users 
  * 
  * @author johannablumenthal
  * @version 0.1
@@ -74,7 +73,7 @@ public class UserCredentials implements Serializable {
 	 */
 
 	public boolean equals(UserCredentials userCredentials) {
-		if (userCredentials.getUserName() == this.getUserName() && userCredentials.getPassword() == this.getPassword()) {
+		if (userCredentials.getUserName().equals(this.getUserName()) && userCredentials.getPassword().equals(this.getPassword())) {
 			return true;
 		} else
 			return false;

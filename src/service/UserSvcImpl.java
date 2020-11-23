@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import domain.UserCredentials;
+import domain.customer.Customer;
 import service.exception.UserException;
 /**
  * User services implemented 
@@ -53,8 +54,8 @@ public class UserSvcImpl implements IUserSvc{
 						customerFolder.toPath().resolve(userName + ".customer.out").toFile()));
 				Object fileObject = input.readObject();
 				input.close();
-				if (fileObject instanceof UserCredentials) {
-					return ((UserCredentials) fileObject).getPassword().equals(userCredentials.getPassword());
+				if (fileObject instanceof Customer) {
+					return ((Customer) fileObject).getCustomerCredentials().getPassword().equals(userCredentials.getPassword());
 				} else
 					throw new UserException(userName + " not associated with a  User");
 

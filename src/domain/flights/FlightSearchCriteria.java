@@ -1,6 +1,9 @@
 package domain.flights;
 
 import java.io.Serializable;
+/**
+ * This class holds the customers search criteria and preferences
+ */
 import java.time.LocalDateTime;
 
 public class FlightSearchCriteria implements Serializable {

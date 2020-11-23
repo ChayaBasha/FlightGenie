@@ -3,7 +3,7 @@ package service.implementationTests;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.User;
+import domain.UserCredentials;
 import domain.customer.Address;
 import domain.customer.CardType;
 import domain.customer.CreditCard;
@@ -19,28 +19,29 @@ import service.exception.UserException;
 public class UserSvcImplTest extends TestCase {
 
 	private ServiceFactory serviceFactory;
-	private User user;
+	private Customer customer;
 
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
 
 		serviceFactory = ServiceFactory.getInstance();
+		
+		UserCredentials customerCredentials = new UserCredentials("FrogBomb", "r1bb3t!");
 		Address customer1Address = new Address(" 1234 Privet Dr.", "Longmont", "CO", "United States", "80503");
 		CreditCard customer1CreditCard = new CreditCard("Johanna Blumenthal", CardType.VISA, "5555 5555 5555 5555",
 				"02/22", "453", customer1Address);
-		Customer customer = new Customer("FrogBomb", "r1bb3t!", "Frog Blumenthal", customer1Address, "frogbomb@gmail.com",
+		customer = new Customer(customerCredentials, "Frog Blumenthal", customer1Address, "frogbomb@gmail.com",
 				customer1CreditCard);
 		ICustomerSvc customerService = (ICustomerSvc) serviceFactory.getService(ICustomerSvc.NAME);
 		customerService.createCustomer(customer);
-		user = customer;
 
 	}
 
 	@Test
 	public void testCheckUserNameAvailable() {
 
-		String userName = user.getUserName();
+		String userName = customer.getCustomerCredentials().getUserName();
 
 		try {
 			IUserSvc userService = (IUserSvc) serviceFactory.getService(IUserSvc.NAME);
@@ -72,10 +73,11 @@ public class UserSvcImplTest extends TestCase {
 
 	@Test
 	public void testAuthenticateUser() {
+		UserCredentials customerCredentials = customer.getCustomerCredentials();
 		try {
 			IUserSvc userService = (IUserSvc) serviceFactory.getService(IUserSvc.NAME);
-			assertTrue(userService.authenticateUser(user));
-			System.out.println("testAuthenticateUSer PASSED");
+			assertTrue(userService.authenticateUser(customerCredentials));
+			System.out.println("testAuthenticateUser PASSED");
 
 		} catch (ServiceLoadException e) {
 			e.printStackTrace();
@@ -88,7 +90,7 @@ public class UserSvcImplTest extends TestCase {
 		try {
 
 			UserSvcImpl userServiceImpl = (UserSvcImpl) serviceFactory.getService(IUserSvc.NAME);
-			assertTrue(userServiceImpl.authenticateUser(user));
+			assertTrue(userServiceImpl.authenticateUser(customerCredentials));
 			System.out.println("testAuthenticateUserPASSED");
 		} catch (ServiceLoadException e) {
 			e.printStackTrace();

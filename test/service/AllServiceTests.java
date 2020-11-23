@@ -13,6 +13,6 @@ import service.implementationTests.UserSvcImplTest;
 @RunWith(Suite.class)
 @SuiteClasses({ServiceFactoryTest.class, CustomerSvcImplTest.class, FlightSvcImplTest.class, ItinerarySvcImplTest.class, UserSvcImplTest.class})
 
-public class AllTests {
+public class AllServiceTests {
 
 }

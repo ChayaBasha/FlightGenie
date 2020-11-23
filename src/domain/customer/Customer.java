@@ -12,12 +12,12 @@ import service.exception.CustomerConstructorException;
  *
  */
 
-public class Customer implements Serializable{
+public class Customer implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private UserCredentials customerCredentials;
 
 	/**
@@ -45,7 +45,7 @@ public class Customer implements Serializable{
 	public void setCustomerCredentials(UserCredentials customerCredentials) {
 		this.customerCredentials = customerCredentials;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -86,9 +86,9 @@ public class Customer implements Serializable{
 		}
 	}
 
-	public Customer(UserCredentials customerCredentials, String name, Address address, String email, CreditCard creditCard)
-			throws CustomerConstructorException {
-		
+	public Customer(UserCredentials customerCredentials, String name, Address address, String email,
+			CreditCard creditCard) throws CustomerConstructorException {
+
 		if (customerCredentials != null && name != null && address != null && creditCard != null) {
 
 			this.customerCredentials = customerCredentials;
@@ -98,8 +98,24 @@ public class Customer implements Serializable{
 			this.creditCard = creditCard;
 
 		} else
-		throw new CustomerConstructorException("Customer Fields cannot be null");
+			throw new CustomerConstructorException("Customer Fields cannot be null");
 	}
-
 	
+	/**
+	 * equals method allows to compare two customers
+	 * @param customer
+	 * @return
+	 */
+
+	public boolean equals(Customer customer) {
+		if (customer.getCustomerCredentials().equals(this.getCustomerCredentials())
+				&& customer.getName().equals(this.getName()) && customer.getEmail().equals(this.getEmail())
+				&& customer.getAddress().equals(this.getAddress())) {
+
+			return true;
+
+		} else
+			return false;
+
+	}
 }

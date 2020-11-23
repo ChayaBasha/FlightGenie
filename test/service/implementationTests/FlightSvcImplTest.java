@@ -19,8 +19,8 @@ public class FlightSvcImplTest extends TestCase {
 	private ServiceFactory serviceFactory;
 	private Airport departureCity;
 	private Airport arrivalCity;
-	private LocalDateTime startDepartureTimeRange;
-	private LocalDateTime endDepartureTimeRange;
+	private LocalDateTime startTimeRange;
+	private LocalDateTime endTimeRange;
 	private Flight flight1;
 	private Flight flight2;
 	
@@ -32,16 +32,16 @@ public class FlightSvcImplTest extends TestCase {
 		serviceFactory = ServiceFactory.getInstance();
 		departureCity = Airport.ASPEN_CO;
 		arrivalCity = Airport.BOSTON_MA;
-		startDepartureTimeRange = LocalDateTime.parse("2019-06-23T11:00:00");
-		endDepartureTimeRange = LocalDateTime.parse("2019-06-23T23:00:00");
+		startTimeRange = LocalDateTime.parse("2019-06-23T11:00:00");
+		endTimeRange = LocalDateTime.parse("2019-06-23T23:00:00");
 		flight1 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO,
 				LocalDateTime.parse("2019-06-23T12:30:00"), Airport.BOSTON_MA,
 				LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
 		flight2 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO,
 				LocalDateTime.parse("2019-06-23T10:30:00"), Airport.BOSTON_MA,
 				LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
-		
-
+	
+	
 	}
 
 	@Test
@@ -137,7 +137,7 @@ public class FlightSvcImplTest extends TestCase {
 		try {
 
 			IFlightSvc flightService = (IFlightSvc) serviceFactory.getService(IFlightSvc.NAME);
-			assertTrue(flightService.getFlightByTimeFrame(startDepartureTimeRange, endDepartureTimeRange) != null);
+			assertTrue(flightService.getFlightByTimeFrame(startTimeRange, endTimeRange) != null);
 			System.out.println("testGetFlightsByTimeFrame PASSED");
 		} catch (ServiceLoadException e) {
 			e.printStackTrace();
