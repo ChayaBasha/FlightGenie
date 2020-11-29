@@ -1,47 +1,35 @@
 # Flight Reservation System
 The FLight Reservation System is an application that allows customers to book airline flights.
 
-# Week 4 Feedback
+# Week 5Feedback
 
-Met week 4 requirements met
-Add more comments to code
-   -Added additional comments 
+Satisfied Requirements 
         
-# Changes in Week4 
-## Domain Layer
-1. I changed the User class to be more descriptive to what is intended UserCredenitals
-2. I similarly changed the Customer class to have a filed for customerCredentials which is of the type UserCredentials (This seems better than extending the user class)
-3. I added a class for FlightSearchCriteria in order to be able to store flight searches (I though I might need this in the future to add additional use cases or additional priorities for filtering flights based on  customer selected options such as only show direct flights or only show flights during this time frame)
-4. I added an equals method to the address and customer classes so that I can use the equals methods in my tests 
+# Changes in Week5 
 
-## Service Layer
-1. I did some refactoring in the ServiceFactory
 
-## Other Changes
-I renamed some of my classes and the .txt to .properties 
+# Week 6 Assignment
+## Visually draw out the user interface (UI) for your application.
+1. See Word document with screen views made with Justinmind labeled ScreenViews in the doc file. 
 
-# Week 4 Assignment
-##Create a business layer manager that provides the logic for executing your highest priority use cases that makes use of the service layer factory and services, and makes use of domain objects.
+## Determine what UI widgets you will need.
 
-Use CAse 001, 002 and 003 implemented
+1. Welcome Screen
+    -Jpanel for the banners 
+    -JPanel for the oval in the middle (Some research suggests this will be a bit tricky, but doable)
+    -JLabel for the static text
+    -JRadioButton for the Leave By/ Arrive By
+    -JList or JMenu for the arrival and departure cities 
+    -JTextFields
+    -JButton
 
-1. I added several business logic items to the FlightManager to control different types of searches
-2. I added several  business logic to the UserManager which controls customers 
+## Create the UI class, add a data member for each widget, and create a skeleton constructor.
 
-##Implement a unit test that tests the functionality of the business layer façade.
-1. Tests added for UserManager 
-2. Tests added for FlightManager
+## Update the UI constructor to layout the widgets.
 
-##Implement a test suite for aggregating the business layer tests.
-1. See AllBusinessTests
+## Add the needed widgets and containers.
 
-##Create a manager supertype that provides the behavior for getting services.
-See ManagerSuperType.java
-##Refactor your manager facades to extend the manager supertype and use the getting services method.
-See FlightManager
-See UserManager
-##Implement a test suite that aggregates the entire application.
-1. See ApplicationTestSuite
+## Update your UI to have an anonymous inner class ActionListener that is registered with a button.
 
 # TODO
 1. I'd like to have the system generate the Ids (I have used the database to do this in the past)

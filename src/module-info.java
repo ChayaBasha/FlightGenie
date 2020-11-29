@@ -5,5 +5,6 @@ module flightReservationSystem {
 	exports business;
 	exports domain;
 	requires junit;
+	requires java.desktop;
 	
 }
