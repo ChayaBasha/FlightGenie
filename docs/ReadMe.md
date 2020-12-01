@@ -6,7 +6,10 @@ The FLight Reservation System is an application that allows customers to book ai
 Satisfied Requirements 
         
 # Changes in Week5 
-
+-Added the View layer
+    - OvalPane
+    -ViewDriver
+    
 
 # Week 6 Assignment
 ## Visually draw out the user interface (UI) for your application.
@@ -14,35 +17,39 @@ Satisfied Requirements
 
 ## Determine what UI widgets you will need.
 
-1. Welcome Screen
     -Jpanel for the banners 
     -JPanel for the oval in the middle (Some research suggests this will be a bit tricky, but doable)
     -JLabel for the static text
-    -JRadioButton for the Leave By/ Arrive By
-    -JList or JMenu for the arrival and departure cities 
+    -JCheckBox for the Leave By/ Arrive By 
     -JTextFields
     -JButton
+    -JTable for the flights
 
 ## Create the UI class, add a data member for each widget, and create a skeleton constructor.
+ 1. Added MainJFrame
+     - added all of the widgets that are named above
+     -added a few items I didn't include in the original welcome screen 
 
 ## Update the UI constructor to layout the widgets.
+1. Widgets are laid out for the welcome screen using GridBagLayout (some tweaking probably still needed) 
 
 ## Add the needed widgets and containers.
+1. All widgets added for welcome screen
 
 ## Update your UI to have an anonymous inner class ActionListener that is registered with a button.
+1. The Search Flights Button used the controller to call the FlightManager to get the flights based upon the criteria
+
+
 
 # TODO
-1. I'd like to have the system generate the Ids (I have used the database to do this in the past)
-2. I need to think about whether I need the isUnique on the user class
-3. I need to add logic to Flight Manager to filter the flights further for available seats...may need additional methods or refactoring of availableSeats method to accommodate more than just one available. 
-4. I need to add the logic for the itineraries
+ - I'd like to have the system generate the Ids (I have used the database to do this in the past)
+- I need to add logic to Flight Manager to filter the flights further for available seats...may need additional methods or refactoring of availableSeats method to accommodate more than just one available. 
+- I need to add the logic for the itineraries
+-I need to add the number of passengers
+- Add input validation to form
 
 # Thoughts
-Should I add a new domain class to store criteria? 
-What controls do I need?
-   unique userNames
-   get flights based on criteria within range of criteria
-   aggregate itineraries for a customer
+Should I have the other views pop up in a new window or create a method on the main frame to hide and show certain elements
    
 
 
