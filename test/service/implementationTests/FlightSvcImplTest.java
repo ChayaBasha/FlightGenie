@@ -106,7 +106,7 @@ public class FlightSvcImplTest extends TestCase {
 
 		try {
 			IFlightSvc flightService = (IFlightSvc) serviceFactory.getService(IFlightSvc.NAME);
-			assertTrue(flightService.getFlightsByRoute(departureCity, arrivalCity) != null);
+			assertTrue(flightService.getDirectFlights(departureCity, arrivalCity) != null);
 			System.out.println("testGetFlightsByRoute PASSED");
 		} catch (ServiceLoadException e) {
 			e.printStackTrace();
@@ -119,7 +119,7 @@ public class FlightSvcImplTest extends TestCase {
 		try {
 
 			FlightSvcImpl flightSvcImpl = (FlightSvcImpl) serviceFactory.getService(IFlightSvc.NAME);
-			assertTrue(flightSvcImpl.getFlightsByRoute(departureCity, arrivalCity) != null);
+			assertTrue(flightSvcImpl.getDirectFlights(departureCity, arrivalCity) != null);
 			System.out.println("testGetFlightsByRoute PASSED");
 		} catch (ServiceLoadException e) {
 			e.printStackTrace();
@@ -149,7 +149,7 @@ public class FlightSvcImplTest extends TestCase {
 
 		try {
 			FlightSvcImpl flightSvcImpl = (FlightSvcImpl) serviceFactory.getService(IFlightSvc.NAME);
-			assertTrue(flightSvcImpl.getFlightsByRoute(departureCity, arrivalCity) != null);
+			assertTrue(flightSvcImpl.getDirectFlights(departureCity, arrivalCity) != null);
 			System.out.println("testGetFlightsByTimeFrame PASSED");
 		} catch (ServiceLoadException e) {
 			e.printStackTrace();

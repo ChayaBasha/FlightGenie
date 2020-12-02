@@ -5,41 +5,29 @@ The FLight Reservation System is an application that allows customers to book ai
 
 Satisfied Requirements 
         
-# Changes in Week5 
--Added the View layer
-    - OvalPane
-    -ViewDriver
+# Changes from Week 6 
+
+## For UC Search Flights
+
+### Domain Layer
+1. I changed the Flight class availability method to search for the availability based on number of passengers requested (changed corresponding test as well)
+
+### Business Layer
+1. I added the available flights loop in the FlightManager method for searchAvailableFlights
     
 
 # Week 6 Assignment
-## Visually draw out the user interface (UI) for your application.
-1. See Word document with screen views made with Justinmind labeled ScreenViews in the doc file. 
+## UC Priority 1: Search Flights
+Status: 
 
-## Determine what UI widgets you will need.
+## UC Priority 2: Manage itinerary
+Status;
 
-    -Jpanel for the banners 
-    -JPanel for the oval in the middle (Some research suggests this will be a bit tricky, but doable)
-    -JLabel for the static text
-    -JCheckBox for the Leave By/ Arrive By 
-    -JTextFields
-    -JButton
-    -JTable for the flights
+## UC Priority 3: Register Customer
+Status:
 
-## Create the UI class, add a data member for each widget, and create a skeleton constructor.
- 1. Added MainJFrame
-     - added all of the widgets that are named above
-     -added a few items I didn't include in the original welcome screen 
-
-## Update the UI constructor to layout the widgets.
-1. Widgets are laid out for the welcome screen using GridBagLayout (some tweaking probably still needed) 
-
-## Add the needed widgets and containers.
-1. All widgets added for welcome screen
-
-## Update your UI to have an anonymous inner class ActionListener that is registered with a button.
-1. The Search Flights Button used the controller to call the FlightManager to get the flights based upon the criteria
-
-
+## UC Priority 4: Login
+Status
 
 # TODO
  - I'd like to have the system generate the Ids (I have used the database to do this in the past)

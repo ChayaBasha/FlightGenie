@@ -228,16 +228,20 @@ public class Flight implements Serializable {
 	};
 
 	/**
-	 * checks whether there are any seats available on a particular flight. This
-	 * could be extended to show how many seats, etc.
-	 * 
+	 * checks whether there are enough seats on the flight 
+	 * @param the desired number of seats
 	 * @return whether seats are available
 	 */
-	public boolean availability() {
+	public boolean availability(Short numberPassengers) {
+		ArrayList<Seat> availableSeats = new ArrayList<Seat>();
 		for (int i = 0; i < this.seats.size(); i++) {
 			if (this.seats.get(i).isBooked() == false) {
-				return true;
+				availableSeats.add(this.seats.get(i));
 			}
+			
+		if(availableSeats.size()== (numberPassengers.intValue()))	{
+			return true;
+		}
 		}
 		return false;
 	}

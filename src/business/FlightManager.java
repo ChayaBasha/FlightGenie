@@ -20,7 +20,7 @@ import service.exception.ServiceLoadException;
 public class FlightManager extends ManagerSuperType {
 
 	public static String IFLIGHT_SVC_PROP = "IFlightSvc";
-	
+
 	public IFlightSvc flightSvc() throws ServiceLoadException {
 		return (IFlightSvc) getService(IFLIGHT_SVC_PROP);
 	}
@@ -41,28 +41,38 @@ public class FlightManager extends ManagerSuperType {
 		 * timeframe as selected by the customer
 		 */
 		if (customerCriteria.isDirectFlightsOnly() && customerCriteria.isPriorityTimeArrival()) {
-			
-			List<Flight> directFlights = flightSvc.getFlightsByRoute(customerCriteria.getDesiredDepartureCity(),
+
+			List<Flight> directFlights = flightSvc.getDirectFlights(customerCriteria.getDesiredDepartureCity(),
 					customerCriteria.getDesiredArrivalCity());
 
 			ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
 			for (int i = 0; i < directFlights.size(); i++) {
-				
+
 				if (directFlights.get(i).getArrivalTime().isBefore(customerCriteria.getDesiredArrivalTime())
 						&& directFlights.get(i).getArrivalTime().isAfter(strictArrivalTimeRange)) {
 					matchingFlights.add(directFlights.get(i));
 				}
 
 			}
-			return matchingFlights;
+
+			ArrayList<Flight> availableMatchingFlights = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlights.size(); i++) {
+
+				if (matchingFlights.get(i).availability(customerCriteria.getNumberPassengers())) {
+					availableMatchingFlights.add(matchingFlights.get(i));
+				} else
+					throw new FlightException("no mathcing FLights Foung");
+
+			}
+			return availableMatchingFlights;
 			/**
 			 * This second option shows all direct flights as selected by the customer and
 			 * allows for a time range of days because this wasn't selected as important by
 			 * the customer
 			 */
 		} else if (customerCriteria.isDirectFlightsOnly()) {
-			
-			List<Flight> directFlights = flightSvc.getFlightsByRoute(customerCriteria.getDesiredDepartureCity(),
+
+			List<Flight> directFlights = flightSvc.getDirectFlights(customerCriteria.getDesiredDepartureCity(),
 					customerCriteria.getDesiredArrivalCity());
 
 			ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
@@ -72,26 +82,145 @@ public class FlightManager extends ManagerSuperType {
 					matchingFlights.add(directFlights.get(i));
 				}
 			}
-			return matchingFlights;
+
+			ArrayList<Flight> availableMatchingFlights = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlights.size(); i++) {
+
+				if (matchingFlights.get(i).availability(customerCriteria.getNumberPassengers())) {
+					availableMatchingFlights.add(matchingFlights.get(i));
+				} else
+					throw new FlightException("no mathcing FLights Foung");
+
+			}
+			return availableMatchingFlights;
 			/**
-			 * This option returns all flights that meet a strict time frame....
+			 * This option returns all flights that meet a strict time frame, but that could be non-direct
 			 */
 
 		} else if (customerCriteria.isPriorityTimeArrival()) {
-			List<Flight> matchingFlights = flightSvc.getFlightByTimeFrame(strictArrivalTimeRange,
+			List<Flight> matchingFlightTimes = flightSvc.getFlightByTimeFrame(strictArrivalTimeRange,
 					customerCriteria.getDesiredArrivalTime());
-			return matchingFlights;
 
-		} else { 
-			LocalDateTime timeFrameFromToday =  LocalDateTime.now().minusDays(-30);
-			List<Flight> browseFlights = flightSvc.getFlightByTimeFrame(LocalDateTime.now(), timeFrameFromToday);
+			ArrayList<Flight> matchingDepartureRoutes = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlightTimes.size(); i++) {
+				if (matchingFlightTimes.get(i).getDepartureCity().equals(customerCriteria.getDesiredDepartureCity())) {
+					matchingDepartureRoutes.add(matchingFlightTimes.get(i));
+				}
+			}
+			ArrayList<Flight> matchingArrivalRoutes = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlightTimes.size(); i++) {
+				if (matchingFlightTimes.get(i).getArrivalCity().equals(customerCriteria.getDesiredArrivalCity())) {
+					matchingArrivalRoutes.add(matchingFlightTimes.get(i));
+				}
+			}
+
+			ArrayList<Flight> firstLegs = new ArrayList<Flight>();
+			ArrayList<Flight> secondLegs = new ArrayList<Flight>();
+			for (int i = 0; i < matchingDepartureRoutes.size(); i++) {
+				for (int j = 0; j < matchingArrivalRoutes.size(); j++) {
+					if (matchingDepartureRoutes.get(i).getArrivalCity()
+							.equals(matchingArrivalRoutes.get(j).getDepartureCity())
+							&& matchingDepartureRoutes.get(i).getArrivalTime()
+									.isBefore(matchingArrivalRoutes.get(j).getDepartureTime())) {
+						firstLegs.add(matchingDepartureRoutes.get(i));
+						secondLegs.add(matchingArrivalRoutes.get(j));
+					}
+
+				}
+			}
+
+			ArrayList<Flight> availableNonDirectFlights = new ArrayList<Flight>();
+			for (int i = 0; i < firstLegs.size(); i++) {
+				if (firstLegs.get(i).availability(customerCriteria.getNumberPassengers())
+						&& secondLegs.get(i).availability(customerCriteria.getNumberPassengers())) {
+					availableNonDirectFlights.add(firstLegs.get(i));
+					availableNonDirectFlights.add(secondLegs.get(i));
+				} else
+					throw new FlightException("no available flights match your search");
+			}
+
+			return availableNonDirectFlights;
+
+		} else 
+			/**
+			 * This is if you care less about direct flights or strict time
+			 */
+		
+		{
+			List<Flight> matchingFlightTimes = flightSvc.getFlightByTimeFrame(strictArrivalTimeRange,
+					customerCriteria.getDesiredArrivalTime());
+
+			ArrayList<Flight> directFlights = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlightTimes.size(); i++) {
+				if(matchingFlightTimes.get(i).getDepartureCity().equals(customerCriteria.getDesiredDepartureCity()) &&
+						matchingFlightTimes.get(i).getArrivalCity().equals(customerCriteria.getDesiredArrivalCity())) {
+					directFlights.add(matchingFlightTimes.get(i));
+				}
+			}
 			
-			return browseFlights;
+			ArrayList<Flight> availableDirectFlights = new ArrayList<Flight>();
+			for(int i=0; i< directFlights.size(); i++) {
+				if(directFlights.get(i).availability(customerCriteria.getNumberPassengers())) {
+					availableDirectFlights.add(directFlights.get(i));
+				}
+			}
+			ArrayList<Flight> matchingDepartureRoutes = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlightTimes.size(); i++) {
+				if (matchingFlightTimes.get(i).getDepartureCity().equals(customerCriteria.getDesiredDepartureCity())) {
+					matchingDepartureRoutes.add(matchingFlightTimes.get(i));
+				}
+			}
+			ArrayList<Flight> matchingArrivalRoutes = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlightTimes.size(); i++) {
+				if (matchingFlightTimes.get(i).getArrivalCity().equals(customerCriteria.getDesiredArrivalCity())) {
+					matchingArrivalRoutes.add(matchingFlightTimes.get(i));
+				}
+			}
+
+			ArrayList<Flight> firstLegs = new ArrayList<Flight>();
+			ArrayList<Flight> secondLegs = new ArrayList<Flight>();
+			for (int i = 0; i < matchingDepartureRoutes.size(); i++) {
+				for (int j = 0; j < matchingArrivalRoutes.size(); j++) {
+					if (matchingDepartureRoutes.get(i).getArrivalCity()
+							.equals(matchingArrivalRoutes.get(j).getDepartureCity())
+							&& matchingDepartureRoutes.get(i).getArrivalTime()
+									.isBefore(matchingArrivalRoutes.get(j).getDepartureTime())) {
+						firstLegs.add(matchingDepartureRoutes.get(i));
+						secondLegs.add(matchingArrivalRoutes.get(j));
+					}
+
+				}
+			}
+
+			ArrayList<Flight> availableNonDirectFlights = new ArrayList<Flight>();
+			for (int i = 0; i < firstLegs.size(); i++) {
+				if (firstLegs.get(i).availability(customerCriteria.getNumberPassengers())
+						&& secondLegs.get(i).availability(customerCriteria.getNumberPassengers())) {
+					availableNonDirectFlights.add(firstLegs.get(i));
+					availableNonDirectFlights.add(secondLegs.get(i));
+				} else
+					throw new FlightException("no available flights match your search");
+			}
+
+			return availableNonDirectFlights;
+
 		}
-		/**
-		 * TODO implement additional logic for searching flights...for example
-		 * non-Direct flights. I have an idea for this, but am not sure I have the time
-		 * to implement this now
-		 */
+
 	}
+
+	/**
+	 * This is just a handy thing if someone just wants to browse flights
+	 * 
+	 * @return
+	 * @throws ServiceLoadException
+	 * @throws FlightException
+	 */
+
+	public List<Flight> browseFlights() throws ServiceLoadException, FlightException {
+		IFlightSvc flightSvc = flightSvc();
+		LocalDateTime timeFrameFromToday = LocalDateTime.now().minusDays(-90);
+		List<Flight> browseFlights = flightSvc.getFlightByTimeFrame(LocalDateTime.now(), timeFrameFromToday);
+		return browseFlights;
+	}
+
 }

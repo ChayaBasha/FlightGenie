@@ -17,7 +17,7 @@ public class FlightSearchCriteria implements Serializable {
 	private Airport desiredArrivalCity;
 	private LocalDateTime desiredDepartureTime;
 	private LocalDateTime desiredArrivalTime;
-	private short numberPassenders;
+	private short numberPassengers;
 	private SeatType desiredSeatType;
 	private boolean directFlightsOnly;
 	private boolean priorityTimeArrival;
@@ -54,12 +54,12 @@ public class FlightSearchCriteria implements Serializable {
 		this.desiredArrivalTime = desiredArrivalTime;
 	}
 
-	public short getNumberPassenders() {
-		return numberPassenders;
+	public short getNumberPassengers() {
+		return numberPassengers;
 	}
 
-	public void setNumberPassenders(short numberPassenders) {
-		this.numberPassenders = numberPassenders;
+	public void setNumberPassengers(short numberPassenders) {
+		this.numberPassengers = numberPassenders;
 	}
 
 	public SeatType getDesiredSeatType() {
@@ -87,13 +87,13 @@ public class FlightSearchCriteria implements Serializable {
 	}
 
 	public FlightSearchCriteria(Airport desiredDepartureCity, Airport desiredArrivalCity, LocalDateTime desiredDepartureTime,
-			LocalDateTime desiredArrivalTime, short numberPassenders, SeatType desiredSeatType, boolean directFlightsOnly, boolean priorityTimeArrival) {
+			LocalDateTime desiredArrivalTime, short numberPassengers, SeatType desiredSeatType, boolean directFlightsOnly, boolean priorityTimeArrival) {
 		
 		this.desiredDepartureCity = desiredDepartureCity;
 		this.desiredArrivalCity = desiredArrivalCity;
 		this.desiredDepartureTime = desiredDepartureTime;
 		this.desiredArrivalTime = desiredArrivalTime;
-		this.numberPassenders = numberPassenders;
+		this.numberPassengers = numberPassengers;
 		this.desiredSeatType = desiredSeatType;
 		this.directFlightsOnly = directFlightsOnly;
 		this.priorityTimeArrival = priorityTimeArrival;

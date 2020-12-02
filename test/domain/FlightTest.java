@@ -71,12 +71,12 @@ public class FlightTest {
 		seats2.add(new Seat("8C", SeatType.ECONOMY, true));
 		seats2.add(new Seat("8D", SeatType.ECONOMY, true));
 		seats2.add(new Seat("8E", SeatType.ECONOMY, true));
-		seats2.add(new Seat("8F", SeatType.ECONOMY, true));
+		seats2.add(new Seat("8F", SeatType.ECONOMY, false));
 		
 		flight2.setSeats(seats2);
 		
-		assertFalse(flight2.availability());
-		assertTrue(flight1.availability());
+		assertFalse(flight2.availability((short) 2));
+		assertTrue(flight1.availability((short) 2));
 	}
 	
 	@Test

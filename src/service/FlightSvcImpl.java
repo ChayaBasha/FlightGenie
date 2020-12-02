@@ -87,7 +87,7 @@ public class FlightSvcImpl implements IFlightSvc {
 	 * This service returns all the Flights that match the route as defined by the
 	 * departure and arrival locations using the parsing of the flightId
 	 */
-	public List<Flight> getFlightsByRoute(Airport departureCity, Airport arrivalCity) throws FlightException {
+	public List<Flight> getDirectFlights(Airport departureCity, Airport arrivalCity) throws FlightException {
 		ArrayList<Flight> matchingRoutes = new ArrayList<Flight>();
 		if (this.flightFolder.isDirectory()) {
 			for (File file : this.flightFolder.listFiles()) {

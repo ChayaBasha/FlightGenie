@@ -26,7 +26,7 @@ public interface IFlightSvc extends IService{
 	
 	public void addFlight(Flight flight) throws FlightException;
 	public List<Flight> getAllFlights() throws FlightException;
-	public List<Flight> getFlightsByRoute(Airport departureCity, Airport arrivalCity) throws FlightException;
+	public List<Flight> getDirectFlights(Airport departureCity, Airport arrivalCity) throws FlightException;
 	public List<Flight> getFlightByTimeFrame(LocalDateTime startDepartureTimeRange, LocalDateTime endDepartureTimeRange) throws FlightException;
 
 }
