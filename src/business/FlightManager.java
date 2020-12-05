@@ -94,12 +94,29 @@ public class FlightManager extends ManagerSuperType {
 			}
 			return availableMatchingFlights;
 			/**
-			 * This option returns all flights that meet a strict time frame, but that could be non-direct
+			 * This option returns all flights that meet a strict time frame, but that could
+			 * be direct or non-direct
 			 */
 
 		} else if (customerCriteria.isPriorityTimeArrival()) {
 			List<Flight> matchingFlightTimes = flightSvc.getFlightByTimeFrame(strictArrivalTimeRange,
 					customerCriteria.getDesiredArrivalTime());
+
+			ArrayList<Flight> directFlights = new ArrayList<Flight>();
+			for (int i = 0; i < matchingFlightTimes.size(); i++) {
+				if (matchingFlightTimes.get(i).getDepartureCity().equals(customerCriteria.getDesiredDepartureCity())
+						&& matchingFlightTimes.get(i).getArrivalCity()
+								.equals(customerCriteria.getDesiredArrivalCity())) {
+					directFlights.add(matchingFlightTimes.get(i));
+				}
+			}
+
+			ArrayList<Flight> availableDirectFlights = new ArrayList<Flight>();
+			for (int i = 0; i < directFlights.size(); i++) {
+				if (directFlights.get(i).availability(customerCriteria.getNumberPassengers())) {
+					availableDirectFlights.add(directFlights.get(i));
+				}
+			}
 
 			ArrayList<Flight> matchingDepartureRoutes = new ArrayList<Flight>();
 			for (int i = 0; i < matchingFlightTimes.size(); i++) {
@@ -135,32 +152,36 @@ public class FlightManager extends ManagerSuperType {
 						&& secondLegs.get(i).availability(customerCriteria.getNumberPassengers())) {
 					availableNonDirectFlights.add(firstLegs.get(i));
 					availableNonDirectFlights.add(secondLegs.get(i));
-				} else
-					throw new FlightException("no available flights match your search");
+				}
+
 			}
 
-			return availableNonDirectFlights;
+			ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
+			availableDirectFlights.addAll(availableNonDirectFlights);
+			matchingFlights.addAll(availableDirectFlights);
+			return matchingFlights;
 
-		} else 
-			/**
-			 * This is if you care less about direct flights or strict time
-			 */
-		
+		} else
+		/**
+		 * This is if you care less about direct flights or strict time
+		 */
+
 		{
-			List<Flight> matchingFlightTimes = flightSvc.getFlightByTimeFrame(strictArrivalTimeRange,
-					customerCriteria.getDesiredArrivalTime());
+			List<Flight> matchingFlightTimes = flightSvc.getFlightByTimeFrame(broadArrivalTimeRangeStart,
+					broadArrivalTimeRangeEnd);
 
 			ArrayList<Flight> directFlights = new ArrayList<Flight>();
 			for (int i = 0; i < matchingFlightTimes.size(); i++) {
-				if(matchingFlightTimes.get(i).getDepartureCity().equals(customerCriteria.getDesiredDepartureCity()) &&
-						matchingFlightTimes.get(i).getArrivalCity().equals(customerCriteria.getDesiredArrivalCity())) {
+				if (matchingFlightTimes.get(i).getDepartureCity().equals(customerCriteria.getDesiredDepartureCity())
+						&& matchingFlightTimes.get(i).getArrivalCity()
+								.equals(customerCriteria.getDesiredArrivalCity())) {
 					directFlights.add(matchingFlightTimes.get(i));
 				}
 			}
-			
+
 			ArrayList<Flight> availableDirectFlights = new ArrayList<Flight>();
-			for(int i=0; i< directFlights.size(); i++) {
-				if(directFlights.get(i).availability(customerCriteria.getNumberPassengers())) {
+			for (int i = 0; i < directFlights.size(); i++) {
+				if (directFlights.get(i).availability(customerCriteria.getNumberPassengers())) {
 					availableDirectFlights.add(directFlights.get(i));
 				}
 			}
@@ -198,12 +219,13 @@ public class FlightManager extends ManagerSuperType {
 						&& secondLegs.get(i).availability(customerCriteria.getNumberPassengers())) {
 					availableNonDirectFlights.add(firstLegs.get(i));
 					availableNonDirectFlights.add(secondLegs.get(i));
-				} else
-					throw new FlightException("no available flights match your search");
+				}
+
 			}
-
-			return availableNonDirectFlights;
-
+			ArrayList<Flight> matchingFlights = new ArrayList<Flight>();
+			availableDirectFlights.addAll(availableNonDirectFlights);
+			matchingFlights.addAll(availableDirectFlights);
+			return matchingFlights;
 		}
 
 	}

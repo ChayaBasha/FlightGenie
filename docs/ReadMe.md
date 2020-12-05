@@ -14,6 +14,7 @@ Satisfied Requirements
 
 ### Business Layer
 1. I added the available flights loop in the FlightManager method for searchAvailableFlights
+2. I added in the non-direct flights logic as well (Shows a lay over) Tested as well 
     
 
 # Week 6 Assignment
