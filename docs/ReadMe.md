@@ -16,6 +16,8 @@ Satisfied Requirements
 1. I added the available flights loop in the FlightManager method for searchAvailableFlights
 2. I added in the non-direct flights logic as well (Shows a lay over) Tested as well 
 
+### Presentation Layer
+1. Refactored the MainJFrame/WElcome Screen to pull out the FlightSearchForm and its oval 
 
 # Week 6 Assignment
 ## UC Priority 1: Search Flights

@@ -5,13 +5,13 @@ import javax.swing.UIManager;
 import view.mainjframe.MainJFrame;
 import view.mainjframe.MainJFrameController;
 
-public class ViewDriver {
+public class FlightGenie {
 
 	/**
 	 * This is the starting point/constructor that will create the maninFrame and
 	 * controller so that the first view will start
 	 */
-	public ViewDriver() {
+	public FlightGenie() {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -30,7 +30,7 @@ public class ViewDriver {
 	 * This is the main method for the whole application
 	 */
 	public static void main(String[] args) {
-		new ViewDriver();
+		new FlightGenie();
 	}
 
 }
