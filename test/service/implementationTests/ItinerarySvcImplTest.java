@@ -21,6 +21,7 @@ public class ItinerarySvcImplTest extends TestCase {
 
 	private ServiceFactory serviceFactory;
 	private Itinerary itinerary;
+	private Itinerary itinerary2;
 
 	@Before
 	protected void setUp() throws Exception {
@@ -29,7 +30,7 @@ public class ItinerarySvcImplTest extends TestCase {
 		Flight flight1 = new Flight(Airline.CONTINENTAL_AIRLINES, (short) 235, Airport.ASPEN_CO,
 				LocalDateTime.parse("2019-06-23T12:30:00"), Airport.BOSTON_MA,
 				LocalDateTime.parse("2019-06-23T18:38:00"), 79.00, 53.00);
-		itinerary = new Itinerary("123456AFD", "FrogBomb", "Penny Blumenthal", flight1, "1C", BookingStatus.RESERVED);
+		itinerary = new Itinerary("FrogBomb", "Penny Blumenthal", flight1, "1C", BookingStatus.RESERVED);
 	}
 
 	@Test
@@ -65,12 +66,13 @@ public class ItinerarySvcImplTest extends TestCase {
 	@Test
 	public void testGetItineraryByCustomer() {
 
-		String userName = "Penny";
+		String userName = "FrogBomb";
+		
 
 		try {
 
 			IItinerarySvc itineraryService = (IItinerarySvc) serviceFactory.getService(IItinerarySvc.NAME);
-			assertTrue(itineraryService.getItineraryByCustomer(userName) != null);
+			assertTrue(itineraryService.getItineraryByCustomer(userName).size() != 0);
 			System.out.println("testGetItineraryByCustomer PASSED");
 		} catch (ServiceLoadException e) {
 			e.printStackTrace();
@@ -97,7 +99,7 @@ public class ItinerarySvcImplTest extends TestCase {
 	@Test
 	public void testGetItineraryById() {
 
-		String itineraryId = itinerary.getItineraryId();
+		String itineraryId = itinerary.createItineraryID();
 		String itineraryOwner = itinerary.getOwner();
 
 		try {

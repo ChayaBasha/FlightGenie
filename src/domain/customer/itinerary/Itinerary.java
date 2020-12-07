@@ -3,6 +3,8 @@ package domain.customer.itinerary;
 import domain.flights.Flight;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -19,7 +21,7 @@ public class Itinerary implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String itineraryId;
+
 	/**
 	 * Holds the customer ID who made the itinerary
 	 */
@@ -38,11 +40,9 @@ public class Itinerary implements Serializable {
 	 * the project
 	 */
 	private BookingStatus bookingStatus;
+	
 	private Date bookingDate = new Date();
 
-	public String getItineraryId() {
-		return itineraryId;
-	}
 
 	public String getOwner() {
 		return owner;
@@ -103,9 +103,8 @@ public class Itinerary implements Serializable {
 		}
 	}
 
-	public Itinerary(String itineraryId, String owner, String passengerName, Flight flight, String seatNumber, BookingStatus bookingStatus) {
-		assert (itineraryId != null && owner != null && passengerName != null && flight != null && seatNumber != null && bookingStatus != null);
-		this.itineraryId = itineraryId;
+	public Itinerary(String owner, String passengerName, Flight flight, String seatNumber, BookingStatus bookingStatus) {
+		assert (owner != null && passengerName != null && flight != null && seatNumber != null && bookingStatus != null);
 		this.owner = owner;
 		this.passengerName = passengerName;
 		this.flight = flight;
@@ -126,6 +125,24 @@ public class Itinerary implements Serializable {
 		} else
 			return false;
 			
+	}
+	
+	/**
+	 * Added this method to generate Itinerary Id's that will be the same for multiple passengers on the same flight
+	 * @param itinerary
+	 * @return
+	 */
+	
+	public String createItineraryID() {
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(this.getBookingDate());
+
+		return Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)) + 
+				Integer.toString(calendar.get(Calendar.HOUR_OF_DAY)) + "_"
+				+ this.getFlight().getAirline().getAirlineCode() + 
+				this.getFlight().getDepartureCity().getAirportCode() + "_"
+				+ this.getOwner() + "_" + this.getPassengerName();
 	}
 }
 

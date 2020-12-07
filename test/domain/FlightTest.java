@@ -80,6 +80,56 @@ public class FlightTest {
 	}
 	
 	@Test
+	public void testAllAvailableSeats() {
+		
+		ArrayList<Seat> seats2 = new ArrayList<Seat> (); 
+		seats2.add(new Seat("1A", SeatType.BUSINESS, true));
+		seats2.add(new Seat("1B", SeatType.BUSINESS, true));
+		seats2.add(new Seat("1C", SeatType.BUSINESS, true));
+		seats2.add(new Seat("1D", SeatType.BUSINESS, true));
+		seats2.add(new Seat("2A", SeatType.BUSINESS, true));
+		seats2.add(new Seat("2B", SeatType.BUSINESS, true));
+		seats2.add(new Seat("2C", SeatType.BUSINESS, true));
+		seats2.add(new Seat("2D", SeatType.BUSINESS, true));
+		seats2.add(new Seat("3A", SeatType.BUSINESS, true));
+		seats2.add(new Seat("3B", SeatType.BUSINESS, true));
+		seats2.add(new Seat("4A", SeatType.ECONOMY, true));
+		seats2.add(new Seat("4B", SeatType.ECONOMY, true));
+		seats2.add(new Seat("4C", SeatType.ECONOMY, true));
+		seats2.add(new Seat("4D", SeatType.ECONOMY, true));
+		seats2.add(new Seat("4E", SeatType.ECONOMY, true));
+		seats2.add(new Seat("4F", SeatType.ECONOMY, true));
+		seats2.add(new Seat("5A", SeatType.ECONOMY, true));
+		seats2.add(new Seat("5B", SeatType.ECONOMY, true));
+		seats2.add(new Seat("5C", SeatType.ECONOMY, true));
+		seats2.add(new Seat("5D", SeatType.ECONOMY, true));
+		seats2.add(new Seat("5E", SeatType.ECONOMY, true));
+		seats2.add(new Seat("5F", SeatType.ECONOMY, true));
+		seats2.add(new Seat("6A", SeatType.ECONOMY, true));
+		seats2.add(new Seat("6B", SeatType.ECONOMY, true));
+		seats2.add(new Seat("6C", SeatType.ECONOMY, true));
+		seats2.add(new Seat("6D", SeatType.ECONOMY, true));
+		seats2.add(new Seat("6E", SeatType.ECONOMY, true));
+		seats2.add(new Seat("6F", SeatType.ECONOMY, true));
+		seats2.add(new Seat("7A", SeatType.ECONOMY, true));
+		seats2.add(new Seat("7B", SeatType.ECONOMY, true));
+		seats2.add(new Seat("7C", SeatType.ECONOMY, true));
+		seats2.add(new Seat("7D", SeatType.ECONOMY, true));
+		seats2.add(new Seat("7E", SeatType.ECONOMY, true));
+		seats2.add(new Seat("7F", SeatType.ECONOMY, true));
+		seats2.add(new Seat("8A", SeatType.ECONOMY, true));
+		seats2.add(new Seat("8B", SeatType.ECONOMY, true));
+		seats2.add(new Seat("8C", SeatType.ECONOMY, true));
+		seats2.add(new Seat("8D", SeatType.ECONOMY, true));
+		seats2.add(new Seat("8E", SeatType.ECONOMY, true));
+		seats2.add(new Seat("8F", SeatType.ECONOMY, false));
+		
+		flight2.setSeats(seats2);
+		
+		assertTrue(flight2.allAvailableSeats().size()==1);
+	}
+	
+	@Test
 	public void testGetAirlineCode() {
 		
 		assertFalse(flight1.getAirline().getAirlineCode() == "FL");

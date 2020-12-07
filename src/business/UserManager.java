@@ -18,6 +18,11 @@ public class UserManager extends ManagerSuperType {
 	public static String ICUSTOMER_SVC_PROP = "ICustomerSvc";
 
 	public static String IUSER_SVC_PROP = "IUserSvc";
+	
+	/**
+	 * This is for you to manage who is logged in (This is needed for itineraries)
+	 */
+	public Customer loggedInCustomer;
 
 	public IUserSvc userSvc() throws ServiceLoadException {
 		return (IUserSvc) getService(IUSER_SVC_PROP);
@@ -65,11 +70,18 @@ public class UserManager extends ManagerSuperType {
 
 			ICustomerSvc customerSvc = customerSvc();
 
-			return customerSvc.getCustomerByUserName(currentUserCredentials.getUserName());
+			this.loggedInCustomer = customerSvc.getCustomerByUserName(currentUserCredentials.getUserName());
+			return this.loggedInCustomer;
 
 		} else
 			throw new CustomerException("No  user found with those credentials");
 
+	}
+	/**
+	 * Logout function added
+	 */
+	public void logout() {
+		this.loggedInCustomer = null;
 	}
 
 	public void deleteCustomer(String userName) throws ServiceLoadException, CustomerException {

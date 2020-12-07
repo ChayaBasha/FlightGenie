@@ -1,6 +1,7 @@
 package domain.flights;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -228,7 +229,8 @@ public class Flight implements Serializable {
 	};
 
 	/**
-	 * checks whether there are enough seats on the flight 
+	 * checks whether there are enough seats on the flight
+	 * 
 	 * @param the desired number of seats
 	 * @return whether seats are available
 	 */
@@ -238,25 +240,37 @@ public class Flight implements Serializable {
 			if (this.seats.get(i).isBooked() == false) {
 				availableSeats.add(this.seats.get(i));
 			}
-			
-		if(availableSeats.size()== (numberPassengers.intValue()))	{
-			return true;
-		}
+
+			if (availableSeats.size() == (numberPassengers.intValue())) {
+				return true;
+			}
 		}
 		return false;
 	}
 
+	public ArrayList<Seat> allAvailableSeats() {
+		ArrayList<Seat> allAvailableSeats = new ArrayList<Seat>();
+		for (int i = 0; i < this.seats.size(); i++) {
+			if (this.seats.get(i).isBooked() == false) {
+				allAvailableSeats.add(this.seats.get(i));
+			}
+
+		}
+		return allAvailableSeats;
+	}
+
 	/**
 	 * Create FlightId creates a unique flight ID for each flight based on the
-	 * fields that are part of the flight instance and can be parsed to filter for more efficient queries even  using the file system  as the data store
+	 * fields that are part of the flight instance and can be parsed to filter for
+	 * more efficient queries even using the file system as the data store
 	 * 
 	 * @return
 	 */
 
 	public String createFlightId() {
 		return this.getDepartureCity().getAirportCode() + "_" + this.getArrivalCity().getAirportCode() + "_"
-				+ this.getDepartureTime().toString() + "_" + this.getArrivalTime().toString() + "_" 
+				+ this.getDepartureTime().toString() + "_" + this.getArrivalTime().toString() + "_"
 				+ this.getAirline().getAirlineCode() + "_" + Short.toString(this.getFlightNumber());
-				
+
 	}
 };
