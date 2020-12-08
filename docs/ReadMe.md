@@ -41,7 +41,8 @@ Status: Working start to finish to get flights
 Missing: number of passengers inPut box on UI; need to fix the availability of flights UI in table 
 
 ## UC Priority 2: Manage itinerary
-Status:
+Status: Got additional logic figured out (added business layer)
+Missing: Views 
 
 ## UC Priority 3: Register Customer
 Status:
@@ -50,14 +51,12 @@ Status:
 Status
 
 # TODO
- - I'd like to have the system generate the Ids (I have used the database to do this in the past)
-- I need to add logic to Flight Manager to filter the flights further for available seats...may need additional methods or refactoring of availableSeats method to accommodate more than just one available. 
-- I need to add the logic for the itineraries
 -I need to add the number of passengers
 - Add input validation to form
+-Finish Views for itineraries
 
-# Thoughts
-Should I have the other views pop up in a new window or create a method on the main frame to hide and show certain elements
+
+
    
 
 

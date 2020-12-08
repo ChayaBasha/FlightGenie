@@ -101,11 +101,12 @@ public class ItinerarySvcImplTest extends TestCase {
 
 		String itineraryId = itinerary.createItineraryID();
 		String itineraryOwner = itinerary.getOwner();
+		;
 
 		try {
 			IItinerarySvc itineraryService = (IItinerarySvc) serviceFactory.getService(IItinerarySvc.NAME);
 			itineraryService.createItinerary(itinerary);
-			assertTrue(itineraryService.getItineraryById(itineraryOwner, itineraryId) != null);
+			assertTrue(itineraryService.getItineraryById(itineraryOwner, itineraryId).createItineraryID().equals(itineraryId));
 			System.out.println("testGetItineraryById PASSED");
 
 		} catch (ServiceLoadException e) {

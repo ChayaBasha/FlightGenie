@@ -118,15 +118,19 @@ public class ItinerarySvcImpl implements IItinerarySvc {
 	public Itinerary getItineraryById(String userName, String itineraryId) throws ItineraryException {
 		Itinerary itinerary = null;
 		List<Itinerary> ownerItineraries = getItineraryByCustomer(userName);
+		
 		for (int i = 0; i < ownerItineraries.size(); i++) {
+			
 			if (ownerItineraries.get(i).createItineraryID().equals(itineraryId)) {
 				itinerary = ownerItineraries.get(i);
 			}
-			return itinerary;
 
 		}
 
-		throw new ItineraryException("no itinerary for user " + userName + " with Id " + itineraryId);
+		if (itinerary == null) {
+			throw new ItineraryException("no itinerary for user " + userName + " with Id " + itineraryId);
+		} else
+			return itinerary;
 	}
 
 	@Override
@@ -152,8 +156,8 @@ public class ItinerarySvcImpl implements IItinerarySvc {
 	public void deleteItinerary(Itinerary itinerary) throws ItineraryException {
 		if (itinerary != null) {
 
-			File existingItinerary = itineraryFolder.toPath()
-					.resolve(itinerary.createItineraryID() + ".itinerary.out").toFile();
+			File existingItinerary = itineraryFolder.toPath().resolve(itinerary.createItineraryID() + ".itinerary.out")
+					.toFile();
 			if (existingItinerary.exists()) {
 				existingItinerary.delete();
 			} else
