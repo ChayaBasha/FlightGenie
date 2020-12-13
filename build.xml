@@ -1,0 +1,75 @@
+
+<project name="flightReservationSystem" basedir=".">
+
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="jar.dir" value="${build.dir}/jar" />
+	<property name="main-class" value="view.FlightGenie" />
+	<property name="lib.dir" value="lib" />
+
+	<path id="classpath">
+		<fileset dir="${basedir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="clean" description="Delete generated filed">
+		<echo message="cleaning" />
+		<delete dir="${build.dir}" />
+		<delete dir="${classes.dir}" />
+		<delete dir="${jar.dir}" />
+		<delete file="${ant.project.name}" />
+	</target>
+
+	<target name="compile" description="compiles the code" depends="clean">
+		<echo message="compilig" />
+		<mkdir dir="${classes.dir}" />
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}">
+
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<target name="jar" description="creates a jar" depends="compile">
+		<echo message="jaring" />
+		<mkdir dir="${jar.dir}" />
+		<jar destfile="${jar.dir}/${ant.project.name}.jar">
+			<fileset dir="${basedir}">
+				<include name="config/*" />
+			</fileset>
+			<fileset dir="${basedir}">
+				<include name="flights/*">
+				</include>
+			</fileset>
+			<fileset dir="${classes.dir}">
+				<include name="**/*.class" />
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}" />
+			</manifest>
+		</jar>
+	</target>
+	<target name="copy" description="Copy Config File">
+		<echo message="copying" />
+		<copy dir="${build.dir}">
+			<fileset dir="${basedir}">
+				<include name="config/*" />
+			</fileset>
+			<fileset dir="${basedir}">
+				<include name="flights">
+				</include>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="run" depends="jar">
+		<echo message="running" />
+		<java jar="${jar.dir}/${ant.project.name}.jar" fork="true" />
+	</target>
+
+	<target name="clean-build" depends="clean,jar" />
+
+	<target name="main" depends="clean-build, run" />
+
+</project>
